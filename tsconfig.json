@@ -15,6 +15,14 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "test/greeting.test.js",
+    "jest.config.js",
+    "components/productCard.test.js",
+    "tsconfig.test.json"
+  ],
   "exclude": ["node_modules"]
 }
