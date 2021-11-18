@@ -1,0 +1,105 @@
+@use './typography.modules.scss';
+.description__layout {
+  margin-top: 4vh;
+  display: flex;
+  border-bottom: 2px solid #e5e5e5;
+
+  &__textarea {
+    &__headingLarge {
+      @extend .h2;
+      text-align: left;
+      @media screen and (max-width: 768px) {
+        font-size: 20px;
+      }
+      @media screen and (max-width: 575px) {
+        text-align: center;
+        margin: 2vh 0;
+      }
+    }
+
+    &__headingSmall {
+      @extend .h2;
+      color: #656565;
+
+      @media screen and (max-width: 768px) {
+        font-size: 20px;
+      }
+      @media screen and (max-width: 575px) {
+        display: none;
+      }
+    }
+  }
+
+  &__text {
+    @extend .descriptionText;
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      word-wrap: break-word;
+    }
+  }
+
+  &__details {
+    text-align: left;
+    justify-content: flex-end;
+    margin-bottom: 10vh;
+
+    @media screen and (max-width: 575px) {
+    }
+
+    &__textWrapper {
+      display: flex;
+      flex-direction: column;
+      @media screen and (max-width: 900px) {
+        margin: auto;
+      }
+
+      &__heading {
+        @extend .h2;
+        text-align: right;
+        @media screen and (max-width: 575px) {
+          text-align: left;
+          margin-top: 5vh;
+        }
+      }
+      &__body {
+        @extend .textBody;
+        @media screen and (max-width: 575px) {
+          text-align: left;
+          margin-top: 2vh;
+        }
+      }
+    }
+
+    &__heading {
+      @extend .headingDesc;
+      @media screen and (max-width: 575px) {
+        text-align: left;
+        margin-top: 2vh;
+      }
+    }
+
+    &__imageWrapper {
+      // padding: 2rem;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 0;
+      @media screen and (max-width: 575px) {
+        justify-content: flex-start;
+      }
+
+      &__img {
+        margin: 1.3vw;
+        width: 7.5vw;
+        justify-self: flex-end;
+
+        @media screen and (max-width: 575px) {
+          width: 25vw;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

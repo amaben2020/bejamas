@@ -8,7 +8,7 @@ import {
   Product,
   ProductCategoryAndPrice,
 } from '../interface/products';
-import styles from '../styles/Home.module.css';
+//import styles from '../styles/Home.module.css';
 import useSelectCategory from '../hooks/useSelectCategory';
 import React from 'react';
 import useSelectPrices from '../hooks/useSelectPrice';
@@ -21,12 +21,20 @@ import { fetchDataBody } from '../api/fetchDataBody';
 import CategoryInput from '../components/CategoryInput';
 import PriceInput from '../components/PriceInput';
 import usePagination from '../hooks/usePagination';
-import AppPagination from '../components/pagination/Pagination';
+import AppPagination from '../components/Pagination/PaginationButton';
 import { categoryCheckbox } from '../utils/categoryCheckbox';
 import { priceCheckbox } from '../utils/priceChekbox';
 import ProductCart from '../components/ProductCard';
 import Loading from '../components/Loading';
-
+import Featured from '../components/Featured';
+import DescriptionLayout from '../components/Layout/DescriptionLayout';
+import Description from '../components/Description/Description';
+import styles from './../styles/product.module.scss';
+import CustomModal from '../components/Modal/CustomModal';
+import style from './../styles/modal.module.scss';
+import AddToCartButton from '../components/Button/AddToCartButton';
+import { Col, Row } from 'react-bootstrap';
+import Image from 'next/image';
 const API_URL = 'http://localhost:1337';
 const resource = 'products';
 
@@ -109,8 +117,19 @@ const Home = ({
     return onAddToCart(product);
   };
 
+  const [modalStatus, setStatus] = useState(false);
+
   return (
-    <div className={styles.container}>
+    <div>
+      <Featured product={products} />
+      {/* <DescriptionLayout>
+        <Description
+          text={productDetails.map((d: any) => d.details)}
+          category={productDetails.map((d: any) => d.category)}
+          title={productDetails.map((d: any) => d.name)}
+          recommendations={recommendations}
+        />
+      </DescriptionLayout> */}
       {status === 'loading' && (
         <p>
           <Loading />
@@ -187,6 +206,92 @@ const Home = ({
           currentCount={pageNumber}
         />
       </div>
+      <div className={styles.photography__section}>
+        <div>
+          <p className={styles.photography__section__headingPrimary}>
+            Photography /{' '}
+            <span className={styles.photography__section__headingSecondary}>
+              {' '}
+              Premium Photos{' '}
+            </span>
+          </p>
+        </div>
+        <div className={styles.photography__section__sort}>
+          {' '}
+          {/* <span onClick={() => setOrderBy('asc')} className={styles.sortArrow}>
+            &#8593;
+          </span>
+          <span onClick={() => setOrderBy('desc')} className={styles.sortArrow}>
+            &#8595;
+          </span> */}
+          <span className={styles.sortText}>Sort By</span>
+          <label className={styles.sortText2} htmlFor="price">
+            Price
+          </label>
+          <select>
+            <option> </option>
+            <option value="low"> </option>
+            <option value="high"> </option>
+          </select>
+        </div>
+        <div className={styles.photography__section__modal}>
+          <div onClick={() => setStatus(true)}>
+            {' '}
+            <Image src="/modalIcon.svg" height="30" width="35" />{' '}
+          </div>
+
+          <div>
+            {modalStatus && (
+              <CustomModal closeModal={() => setStatus(false)}>
+                <p className={style.modalText}>Filter</p>
+                {/* <Checkboxes list={category} handleFilters={undefined} /> */}
+                <hr />
+                <p className={style.modalText}>Price range</p>
+                {/* <Checkboxes list={price} handleFilters={undefined} /> */}
+                <div className={style.modalButtonArea}>
+                  {' '}
+                  <AddToCartButton
+                    inverted="inverted"
+                    title="Clear"
+                    onClick={() => console.log('yeah')}
+                  />
+                  <AddToCartButton
+                    title="Save"
+                    onClick={() => console.log('yeah')}
+                  />
+                </div>
+              </CustomModal>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <Row className={styles.productSection__wrapper}>
+        <Col lg={3} className={styles.checkboxArea}>
+          <h2 className={styles.myCheckBoxTitle}>Category</h2>
+          {/* <Checkboxes list={category} handleFilters={undefined} /> */}
+
+          <hr />
+
+          <h2 className={styles.myCheckBoxTitle}>Price range</h2>
+          {/* <Checkboxes list={price} handleFilters={undefined} /> */}
+        </Col>
+
+        <Col lg={9} className={styles.productSection__wrapper__productArea}>
+          {/* {filteredProductData?.map((product: any) => (
+            <ProductCard key={product._id} product={product} />
+          ))} */}
+
+          <AppPagination
+            pageCount={pageCount}
+            onPageChange={changePage}
+            pageRangeDisplayed={6}
+            currentCount={pageNumber}
+          />
+        </Col>
+
+        <Col>heyyy</Col>
+      </Row>
     </div>
   );
 };

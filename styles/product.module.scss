@@ -1,0 +1,86 @@
+@use './typography.modules.scss';
+
+.productSection__wrapper {
+  display: flex;
+  padding: 3rem 0;
+
+  @media screen and (max-width: 695px) {
+    padding: 1rem 0;
+  }
+
+  &__productArea {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.photography__section {
+  padding: 3vh 0;
+  display: flex;
+  justify-content: space-between;
+
+  &__headingPrimary {
+    font-family: Archivo;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+    }
+    @media screen and (max-width: 414px) {
+      font-size: 20px;
+    }
+  }
+  &__headingSecondary {
+    @extend .h_sec;
+    color: #9b9b9b;
+  }
+  &__sort {
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  &__modal {
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+}
+
+.checkboxArea {
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
+}
+
+.sortText {
+  @extend .h2;
+  color: #9b9b9b;
+}
+.sortText2 {
+  @extend .h2;
+  color: #000;
+  margin-left: 2vw;
+}
+.sortArrow {
+  @extend .h2;
+  color: #9b9b9b;
+  cursor: pointer;
+
+  &:hover {
+    color: #4e4e4e;
+  }
+}
+
+.myCheckBoxTitle {
+  @extend .h2;
+  padding-bottom: 3vh;
+  margin-top: 1.3vh;
+}

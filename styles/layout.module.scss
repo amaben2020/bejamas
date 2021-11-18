@@ -1,0 +1,7 @@
+.layout {
+  padding: 5vh;
+
+  @media screen and (max-width: 414px) {
+    padding: 2.5vh;
+  }
+}

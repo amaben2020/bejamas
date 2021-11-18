@@ -1,0 +1,16 @@
+@use './typography.modules.scss';
+
+.myCheckbox {
+  margin: 3.5vh 0;
+
+  &__label {
+    margin-left: 2vw;
+    @extend .h2;
+    font-weight: 300;
+    color: #1d1d1d;
+  }
+
+  &__input {
+    padding: 3vh;
+  }
+}

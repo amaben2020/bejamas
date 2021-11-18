@@ -1,0 +1,72 @@
+.addToCart {
+  height: 5vh;
+  width: 15vw;
+  border: none;
+  background: #000000;
+  color: #fff;
+
+  @media screen and (max-width: 768px) {
+    width: 25vw;
+  }
+  @media screen and (max-width: 431px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 359px) {
+    font-size: 12px;
+  }
+
+  &:hover {
+    background: #fff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+}
+
+.fullWidth {
+  height: 7vh;
+  min-width: 100%;
+  border: none;
+  background: #000000;
+  color: #fff;
+  margin-top: 3vh;
+
+  @media screen and (max-width: 768px) {
+    width: 25vw;
+  }
+  @media screen and (max-width: 431px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 359px) {
+    font-size: 12px;
+  }
+
+  &:hover {
+    background: #fff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+}
+
+.addToCartWhite {
+  height: 5vh;
+  width: 15vw;
+  background: #fff;
+  color: #000000;
+  border: 2px solid #000000;
+
+  @media screen and (max-width: 768px) {
+    width: 25vw;
+  }
+  @media screen and (max-width: 431px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 359px) {
+    font-size: 12px;
+  }
+
+  &:hover {
+    background: #000000;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+}

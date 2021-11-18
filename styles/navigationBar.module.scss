@@ -1,0 +1,183 @@
+.mynav {
+  border-bottom: 3px solid #e5e5e5;
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    &__minMargin {
+      @media screen and (min-width: 1366px) {
+        margin-left: -3vw;
+        padding: 0;
+      }
+
+      margin-left: -3vw;
+      padding: 0;
+    }
+  }
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__CartIcon {
+    position: relative;
+
+    &__value {
+      position: absolute;
+      top: 55%;
+      right: -20px;
+      background: #000;
+      width: 1.5vw;
+      color: #fff;
+      text-align: center;
+      padding: 1px;
+      font-family: Archivo;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 22px;
+      letter-spacing: 0.07em;
+      text-align: center;
+      margin: 6px;
+
+      @media screen and (min-width: 1071px) {
+        right: -1.5vw;
+        padding: 3px;
+      }
+      @media screen and (max-width: 768px) {
+        font-size: 23px;
+        right: -4vw;
+        padding: 3px;
+        width: 5vw;
+      }
+
+      @media screen and (max-width: 414px) {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+.bg-light {
+  background: none !important;
+}
+
+.cartItems {
+  width: 30vw;
+  height: 30vh;
+  border: 2px solid #e5e5e5;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  overflow-y: scroll;
+  z-index: 5;
+
+  @media screen and (max-width: 768px) {
+    right: 10;
+    width: 35vw;
+  }
+
+  @media screen and (max-width: 550px) {
+    right: 10;
+    width: 55vw;
+  }
+  @media screen and (max-width: 550px) {
+    right: 10;
+    width: 65vw;
+  }
+
+  &__cartBtn {
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    z-index: 2;
+    height: 15%;
+    border: none;
+  }
+  &__flexarea {
+    display: flex;
+    margin-top: 2vh;
+    justify-content: space-around;
+    border-bottom: 1px solid #e5e5e5;
+    overflow-y: auto;
+    height: 15vh;
+
+    &__text {
+      font-family: Archivo;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #000000;
+      @media screen and (max-width: 550px) {
+        font-size: 13px;
+      }
+      @media screen and (max-width: 550px) {
+        font-size: 11.5px;
+      }
+    }
+    &__price {
+      font-family: Archivo;
+      font-size: 29px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 32px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #656565;
+
+      @media screen and (max-width: 550px) {
+        font-size: 23px;
+      }
+      @media screen and (max-width: 550px) {
+        font-size: 18px;
+      }
+    }
+
+    &__img {
+      margin-left: 2vw;
+    }
+  }
+  &__clearBtn {
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    margin-bottom: 4vh;
+
+    @media screen and (max-width: 768px) {
+      left: 15%;
+    }
+
+    @media screen and (max-width: 540px) {
+      left: 31%;
+      padding-bottom: 0.7vh;
+    }
+    @media screen and (max-width: 414px) {
+      left: 30%;
+      padding-bottom: 0.7vh;
+    }
+    @media screen and (max-width: 360px) {
+      top: 86%;
+    }
+  }
+  &__paddingarea {
+    padding: 2rem;
+    position: relative;
+
+    &__X {
+      position: absolute;
+      top: 5%;
+      right: 10%;
+      font-size: 26px;
+      cursor: pointer;
+    }
+  }
+}
+
+.dNone {
+  display: none;
+}
