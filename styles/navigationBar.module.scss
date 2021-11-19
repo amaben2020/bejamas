@@ -88,6 +88,13 @@
     width: 65vw;
   }
 
+  &__clearBtn {
+    position: sticky;
+    bottom: 1%;
+    left: 50%;
+    z-index: 100;
+  }
+
   &__cartBtn {
     position: absolute;
     bottom: 0;
@@ -143,10 +150,11 @@
     }
   }
   &__clearBtn {
-    position: absolute;
-    top: 90%;
-    left: 25%;
-    margin-bottom: 4vh;
+    position: sticky;
+    left: 50%;
+    bottom: 1%;
+    z-index: 100;
+    // margin-bottom: 4vh;
 
     @media screen and (max-width: 768px) {
       left: 15%;
@@ -170,7 +178,7 @@
 
     &__X {
       position: absolute;
-      top: 5%;
+      top: 2%;
       right: 10%;
       font-size: 26px;
       cursor: pointer;
@@ -180,4 +188,8 @@
 
 .dNone {
   display: none;
+}
+
+.sticky {
+  position: sticky;
 }

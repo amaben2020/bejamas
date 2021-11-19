@@ -37,6 +37,7 @@ import { Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
 import useSort from '../hooks/useSort';
 import ProductCard from '../components/ProductCard';
+import SortAndFilter from '../components/SortAndFilter';
 const API_URL = 'http://localhost:1337';
 const resource = 'products';
 
@@ -76,9 +77,8 @@ const Home = ({
   const { onCloseCart, onAddToCart, cartState, onClearCart } = useCart();
 
   /** Doing this on the client side due to SEO, server side pagination is very easy to implement as well. */
-
   const [pageNumber, setPageNumber] = React.useState(0);
-  const productsPerPage = 2;
+  const productsPerPage = 3;
   //non-null assertion operator on line 93, 95
   const pagesVisited = pageNumber * productsPerPage;
   const paginatedProductData = Object.values(products!).slice(
@@ -93,6 +93,7 @@ const Home = ({
   };
 
   const onAdd = (product: IProduct): void => {
+    if (!product) return;
     return onAddToCart(product);
   };
 
@@ -117,13 +118,6 @@ const Home = ({
         </p>
       )}
       {status === 'error' && <p>Something went wrong</p>}
-      {/* {status === 'success' &&
-        paginatedProductData.length > 0 &&
-        paginatedProductData?.map((product: IProduct) => (
-          <div key={product.id}>
-            <ProductCart product={product} onAdd={onAdd} />
-          </div>
-        ))} */}
 
       {categoryData.length > 0 &&
         categoryData.map((category) =>
@@ -137,67 +131,8 @@ const Home = ({
 
       {/* <SortInput sortValues={sortValues} handleSort={handleSort} /> */}
 
-      {/* perfect */}
-      <select onChange={handleSort}>
-        <option value="name">Alphabetically</option>
-        <option value="price">Price</option>
-      </select>
-
-      <div>
-        <button
-          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-            const { value } = e.target as HTMLButtonElement;
-            setOrderValue([value]);
-          }}
-          value="asc"
-        >
-          &#8593;
-        </button>
-        <button
-          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-            const { value } = e.target as HTMLButtonElement;
-            setOrderValue([value]);
-          }}
-          value="desc"
-        >
-          &#8595;
-        </button>
-
-        <AppPagination
-          pageCount={pageCount}
-          onPageChange={changePage}
-          pageRangeDisplayed={6}
-          currentCount={pageNumber}
-        />
-      </div>
       <div className={styles.photography__section}>
-        <div>
-          <p className={styles.photography__section__headingPrimary}>
-            Photography /{' '}
-            <span className={styles.photography__section__headingSecondary}>
-              {' '}
-              Premium Photos{' '}
-            </span>
-          </p>
-        </div>
-        <div className={styles.photography__section__sort}>
-          {' '}
-          <span onClick={() => setOrderBy('asc')} className={styles.sortArrow}>
-            &#8593;
-          </span>
-          <span onClick={() => setOrderBy('desc')} className={styles.sortArrow}>
-            &#8595;
-          </span>
-          <span className={styles.sortText}>Sort By</span>
-          <label className={styles.sortText2} htmlFor="price">
-            Price
-          </label>
-          <select>
-            <option> </option>
-            <option value="low"> </option>
-            <option value="high"> </option>
-          </select>
-        </div>
+        <SortAndFilter handleSort={handleSort} setOrderValue={setOrderValue} />
         <div className={styles.photography__section__modal}>
           <div onClick={() => setStatus(true)}>
             {' '}
@@ -242,17 +177,13 @@ const Home = ({
         </Col>
 
         <Col lg={9} className={styles.productSection__wrapper__productArea}>
-          {/* {filteredProductData?.map((product: any) => (
-            <ProductCard key={product._id} product={product} />
-          ))} */}
-
-          {/* {status === 'success' &&
+          {status === 'success' &&
             paginatedProductData.length > 0 &&
             paginatedProductData?.map((product: IProduct) => (
               <div key={product.id}>
                 <ProductCard product={product} onAdd={onAdd} />
               </div>
-            ))} */}
+            ))}
 
           <AppPagination
             pageCount={pageCount}

@@ -11,6 +11,7 @@ const ProductCard = ({ product, onAdd }: ProductCardElement) => {
   const { onAddToCart } = useCart();
   //const { _id, image, name, price, category, bestseller } = product;
   const { image, name, price, id } = product;
+  console.log(id);
 
   return (
     <div>

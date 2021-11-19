@@ -6,7 +6,8 @@ import Image from 'next/image';
 const ProductCard = ({ product, onAdd }: ProductCardElement) => {
   const { name, image, id, value, categoryName } = product;
 
-  console.log('PRODUCT IN CARD', product);
+  //WORKING COMPONENT
+  console.log('PRODUCT IN CARD', product.image);
 
   return (
     <div>
@@ -16,21 +17,21 @@ const ProductCard = ({ product, onAdd }: ProductCardElement) => {
             <p className={styles.card__bestseller}> Best Seller</p>
           )}
         </div> */}
-        {/* <Image
+        <Image
           width="500"
           height="680"
           className={styles.card__img}
-          src={image && image.url}
+          src={image && image?.url}
           alt={name}
-        /> */}
+        />
 
-        <button className={styles.card__btn} onClick={onAdd(product)}>
+        <button className={styles.card__btn} onClick={() => onAdd(product)}>
           ADD TO CART
         </button>
       </div>
       <div className={styles.card__priceArea}>
         {/* <p className={styles.card__priceArea__smallText}>{category}</p> */}
-        <p className={styles.card__priceArea__largeText}>{name}</p>
+        <p className={styles.card__priceArea__largeText}>{product.name}</p>
         <p className={styles.card__priceArea__smallText}> $ {value}</p>
       </div>
     </div>
