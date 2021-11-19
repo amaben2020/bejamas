@@ -1,19 +1,49 @@
 import React from 'react';
 import { ProductCardElement } from '../interface/product';
+import styles from '../styles/card.module.scss';
+import Image from 'next/image';
 
 const ProductCard = ({ product, onAdd }: ProductCardElement) => {
-  const { name, price, image, id, value, categoryName } = product;
+  const { name, image, id, value, categoryName } = product;
+
+  console.log('PRODUCT IN CARD', product);
 
   return (
     <div>
-      <div key={id}>
-        <p>{name}</p>
-        <p>${value}</p>
-        <p>{categoryName}</p>
+      <div className={styles.card} key={id}>
+        {/* <div>
+          {bestseller && (
+            <p className={styles.card__bestseller}> Best Seller</p>
+          )}
+        </div> */}
+        {/* <Image
+          width="500"
+          height="680"
+          className={styles.card__img}
+          src={image && image.url}
+          alt={name}
+        /> */}
 
-        <button onClick={() => onAdd(product)}>Add to cart</button>
+        <button className={styles.card__btn} onClick={onAdd(product)}>
+          ADD TO CART
+        </button>
+      </div>
+      <div className={styles.card__priceArea}>
+        {/* <p className={styles.card__priceArea__smallText}>{category}</p> */}
+        <p className={styles.card__priceArea__largeText}>{name}</p>
+        <p className={styles.card__priceArea__smallText}> $ {value}</p>
       </div>
     </div>
+
+    // <div>
+    //   <div key={id}>
+    //     <p>{name}</p>
+    //     <p>${value}</p>
+    //     <p>{categoryName}</p>
+
+    //     <button onClick={() => onAdd(product)}>Add to cart</button>
+    //   </div>
+    // </div>
   );
 };
 

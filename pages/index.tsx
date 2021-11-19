@@ -35,6 +35,8 @@ import style from './../styles/modal.module.scss';
 import AddToCartButton from '../components/Button/AddToCartButton';
 import { Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
+import useSort from '../hooks/useSort';
+import ProductCard from '../components/ProductCard';
 const API_URL = 'http://localhost:1337';
 const resource = 'products';
 
@@ -49,14 +51,8 @@ const Home = ({
   pricesData,
 }: ProductCategoryAndPrice) => {
   const { selectCategory, ids } = useSelectCategory();
-
   const { selectPrices, priceIds } = useSelectPrices();
-
-  const sortValues = ['price'];
-  const [sortValue, setSortValue] = useState(sortValues);
-
-  const orderValues = ['asc'];
-  const [orderValue, setOrderValue] = useState(orderValues);
+  const { sortValue, handleSort, setOrderValue, orderValue } = useSort();
 
   const { data: products, status } = useQuery(
     [
@@ -73,28 +69,11 @@ const Home = ({
     }
   );
 
-  const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortValue([e.target.value]);
-  };
-
   useEffect(() => {
     toast.success(`Welcome to Bejamas`);
   }, []);
 
-  const [myProducts, setMyProducts] = useState(products);
-
   const { onCloseCart, onAddToCart, cartState, onClearCart } = useCart();
-
-  // const {
-  //   filteredProductData,
-  //   pageCount,
-  //   changePage,
-  //   pagesVisited,
-  //   productsPerPage,
-  //   pageNumber,
-  // } = usePagination();
-
-  // console.log(filteredProductData(myProducts));
 
   /** Doing this on the client side due to SEO, server side pagination is very easy to implement as well. */
 
@@ -119,6 +98,8 @@ const Home = ({
 
   const [modalStatus, setStatus] = useState(false);
 
+  const [o, setOrderBy] = useState('asc');
+
   return (
     <div>
       <Featured product={products} />
@@ -136,17 +117,13 @@ const Home = ({
         </p>
       )}
       {status === 'error' && <p>Something went wrong</p>}
-      {status === 'success' &&
+      {/* {status === 'success' &&
         paginatedProductData.length > 0 &&
         paginatedProductData?.map((product: IProduct) => (
           <div key={product.id}>
-            <ProductCart
-              // categoryData={categoryData}
-              product={product}
-              onAdd={onAdd}
-            />
+            <ProductCart product={product} onAdd={onAdd} />
           </div>
-        ))}
+        ))} */}
 
       {categoryData.length > 0 &&
         categoryData.map((category) =>
@@ -186,19 +163,6 @@ const Home = ({
           &#8595;
         </button>
 
-        <button
-          onClick={() =>
-            onAddToCart({
-              id: '1',
-              name: 'test',
-              price: '1',
-              image: 'test',
-            })
-          }
-        >
-          Add to cart
-        </button>
-
         <AppPagination
           pageCount={pageCount}
           onPageChange={changePage}
@@ -218,12 +182,12 @@ const Home = ({
         </div>
         <div className={styles.photography__section__sort}>
           {' '}
-          {/* <span onClick={() => setOrderBy('asc')} className={styles.sortArrow}>
+          <span onClick={() => setOrderBy('asc')} className={styles.sortArrow}>
             &#8593;
           </span>
           <span onClick={() => setOrderBy('desc')} className={styles.sortArrow}>
             &#8595;
-          </span> */}
+          </span>
           <span className={styles.sortText}>Sort By</span>
           <label className={styles.sortText2} htmlFor="price">
             Price
@@ -282,6 +246,14 @@ const Home = ({
             <ProductCard key={product._id} product={product} />
           ))} */}
 
+          {/* {status === 'success' &&
+            paginatedProductData.length > 0 &&
+            paginatedProductData?.map((product: IProduct) => (
+              <div key={product.id}>
+                <ProductCard product={product} onAdd={onAdd} />
+              </div>
+            ))} */}
+
           <AppPagination
             pageCount={pageCount}
             onPageChange={changePage}
@@ -289,8 +261,6 @@ const Home = ({
             currentCount={pageNumber}
           />
         </Col>
-
-        <Col>heyyy</Col>
       </Row>
     </div>
   );
