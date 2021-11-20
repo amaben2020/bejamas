@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const ProductCard = ({ product, onAdd }: ProductCardElement) => {
   const { name, image, id, value, categoryName, bestseller } = product;
-
+  console.log('IMAGE', image);
   return (
     <div>
       <div className={styles.card} key={id}>
@@ -18,7 +18,7 @@ const ProductCard = ({ product, onAdd }: ProductCardElement) => {
           width="500"
           height="680"
           className={styles.card__img}
-          src={image && image?.url}
+          src={image && image.url}
           alt={name}
         />
 

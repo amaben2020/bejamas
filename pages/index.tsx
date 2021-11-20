@@ -93,7 +93,7 @@ const Home = ({
   );
 
   const recommendations = Object.values(products!).filter(
-    (recommendation: IProduct) => recommendation.recommendation
+    (product: IProduct) => product.recommendation
   );
 
   return (

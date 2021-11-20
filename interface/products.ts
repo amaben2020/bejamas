@@ -1,11 +1,15 @@
 export interface IProduct {
-  recommendation: unknown;
-  details: any;
+  recommendation: string;
+  details: string;
   filter(arg0: (product: { featured: boolean }) => boolean): IProduct[];
   id: number;
   name: string;
   price: number;
-  image: string;
+
+  image:
+    | { size: string | number }
+    | { formats: { thumbnail: { url: string } } }
+    | { url: string };
   description: string;
   featured: boolean;
   value: number;
@@ -16,12 +20,14 @@ export interface IProduct {
 export interface IRecommendation {
   details?: string;
   size2: string;
-  image: string;
-  size: string;
+  image:
+    | { formats: { thumbnail: { url: string } } }
+    | { formats: { url: string } };
+  size: string[];
 }
 
 export interface IRecommendationList {
-  recommendations?: IRecommendation;
+  recommendations: IRecommendation;
 }
 
 export interface SingleProduct {

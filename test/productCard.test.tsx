@@ -13,8 +13,7 @@ describe('Item', () => {
     bestseller: false,
     price: 5.99,
     categoryName: 'jejeje',
-    image: 'https://via.placeholder.com/150',
-    //image: { width: '500', height: '680' },
+    image: { formats: { thumbnail: { url: 'string' } } },
     value: 23,
     description: 'jdjdjdj',
     category: {
@@ -25,7 +24,7 @@ describe('Item', () => {
       updated_at: '2021-11-12T13:05:14.808Z',
     },
     created_at: '2021-11-12T13:04:39.778Z',
-    recommendation: 'ss',
+    recommendation: 'dd',
     details:
       "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book.So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book.So how did the classical Latin become so incoherent? According to McClintock.",
   };

@@ -6,11 +6,11 @@ import styles from './../../styles/navigationBar.module.scss';
 import ClearCartButton from '../Button/AddToCartButton';
 import useCart from '../../hooks/useCart';
 interface ICartItems {
-  price?: number;
-  image?: { formats: { thumbnail: { url: string } } };
-  name?: string;
-  _id?: string;
-  value?: number;
+  // price?: number;
+  image: { formats: { thumbnail: { url: string } } };
+  name: string;
+  _id: string;
+  value: number;
 }
 
 interface IClose {
@@ -53,7 +53,7 @@ const CartItems = ({ onClose }: IClose) => {
               </div>
               <div className={styles.cartItems__flexarea__img}>
                 <Image
-                  src={c && c.image.formats?.thumbnail?.url}
+                  src={c && c.image.formats.thumbnail?.url}
                   alt={c.name}
                   width={140}
                   height={80}

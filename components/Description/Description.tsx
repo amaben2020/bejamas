@@ -17,10 +17,10 @@ const Description = ({
   recommendations,
 }: IDescription) => {
   const recSize = Object.values(recommendations)
-    .map((r: any) => r.image.size)
+    .map((r: IProduct) => r.image.size)
     .filter((size) => size > 50);
   const recSize2 = Object.values(recommendations)
-    .map((r: any) => r.image.size)
+    .map((r: IProduct) => r.image.size)
     .filter((size) => size < 25);
 
   return (
