@@ -98,7 +98,7 @@ const Home = ({
 
   return (
     <div>
-      <Featured product={products} />
+      <Featured product={productsData} />
       <DescriptionLayout>
         <Description
           featuredText={productDetails.map((d: IProduct) => d.details)}

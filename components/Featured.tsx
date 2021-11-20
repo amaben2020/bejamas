@@ -1,13 +1,20 @@
 import useCart from '../hooks/useCart';
-import { IProduct, SingleProduct } from '../interface/products';
+import {
+  IProduct,
+  SingleProduct,
+  ProductCategoryAndPrice,
+  Product,
+} from '../interface/products';
 import style from './../styles/featured.module.scss';
 import AddToCartButton from './Button/AddToCartButton';
 import Image from 'next/image';
 
-const Featured = ({ product }: SingleProduct) => {
-  const featuredProduct = product.filter(
-    (p: { featured: boolean }) => p.featured
-  );
+interface IMyChildren {
+  product: IProduct[];
+}
+
+const Featured = ({ product }: IMyChildren) => {
+  const featuredProduct = product.filter((p) => p.featured);
 
   const { onAddToCart } = useCart();
 
