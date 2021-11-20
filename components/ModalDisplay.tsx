@@ -14,9 +14,7 @@ interface ModalDisplayProps {
   onCloseCart: () => void;
   setStatus: (status: boolean) => void;
   categoryData: ICategory[];
-
   pricesData: IPrice[];
-
   priceIds: number[];
 }
 

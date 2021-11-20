@@ -9,7 +9,7 @@ interface IDescription {
   featuredCategory: string[];
   recommendations: IProduct[];
 }
-// recommendations,
+
 const Description = ({
   featuredText,
   featuredCategory,

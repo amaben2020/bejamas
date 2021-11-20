@@ -14,6 +14,7 @@ describe('Item', () => {
     price: 5.99,
     categoryName: 'jejeje',
     image: 'https://via.placeholder.com/150',
+    //image: { width: '500', height: '680' },
     value: 23,
     description: 'jdjdjdj',
     category: {

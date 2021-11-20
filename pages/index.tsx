@@ -27,9 +27,9 @@ import useSort from '../hooks/useSort';
 import ProductCard from '../components/ProductCard';
 import SortAndFilter from '../components/SortAndFilter';
 import ModalDisplay from '../components/ModalDisplay';
-
-const API_URL = 'http://localhost:1337';
-const resource = 'products';
+import { fetchAPI } from '../lib/api';
+import { API_URL } from '../data/endpoint';
+import { resource } from '../components/data/endpoint';
 
 // using function composition technique to reduce index.js code length
 const getProducts = async (key: Key): Promise<Product[]> => {
@@ -63,19 +63,18 @@ const Home = ({
     toast.success(`Welcome to Bejamas`);
   }, []);
 
-  const { onCloseCart, onAddToCart, cartState, onClearCart } = useCart();
+  const { onCloseCart, onAddToCart, onClearCart } = useCart();
 
-  /** Doing this on the client side due to SEO, server side pagination is very easy to implement as well. */
+  /** Doing Pagination on the client side due to SEO, server side pagination is super easy to implement as well. */
   const [pageNumber, setPageNumber] = useState(0);
   const productsPerPage = 6;
-  //non-null assertion operator on line 84, 88
+  //non-null assertion operator on line 75, 79
   const pagesVisited = pageNumber * productsPerPage;
   const paginatedProductData = Object.values(products!).slice(
     pagesVisited,
     pagesVisited + productsPerPage
   );
   const pageCount = Math.ceil(products!.length / productsPerPage);
-
   const changePage = (selectedItem: { selected: number }): void => {
     const { selected } = selectedItem;
     return setPageNumber(selected);
@@ -97,7 +96,6 @@ const Home = ({
     (recommendation: IProduct) => recommendation.recommendation
   );
 
-  console.log(productsData);
   return (
     <div>
       <Featured product={products} />
@@ -192,15 +190,9 @@ export const getStaticProps = async (): Promise<{
     pricesData: IPrice[];
   };
 }> => {
-  const products = await fetch(`${process.env.REACT_APP_API_URL}/products`);
-  const productsData = await products.json();
-
-  const category = await fetch(`${process.env.REACT_APP_API_URL}/categories`);
-  const categoryData = await category.json();
-
-  const prices = await fetch(`${process.env.REACT_APP_API_URL}/prices`);
-  const pricesData = await prices.json();
-
+  const productsData = await fetchAPI('/products');
+  const categoryData = await fetchAPI('/categories');
+  const pricesData = await fetchAPI('/prices');
   return {
     props: {
       productsData,
