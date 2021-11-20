@@ -1,30 +1,28 @@
 import React, { useContext } from 'react';
 import useCart from '../hooks/useCart';
-import { IProduct } from '../interface/products';
+import { IProduct, Product, SingleProduct } from '../interface/products';
 import style from './../styles/featured.module.scss';
 //import CartContext from './../context/CartContext';
 import AddToCartButton from './Button/AddToCartButton';
-
-interface Product {
-  _id: string;
-  details: null;
-  name: string;
-  category: string;
-  price: number;
-  featured: boolean;
-  bestseller: boolean;
-  image: object;
-  currency: string;
-}
+import Image from 'next/image';
+// interface Product {
+//   _id: string;
+//   details: null;
+//   name: string;
+//   category: string;
+//   price: number;
+//   featured: boolean;
+//   bestseller: boolean;
+//   image: object;
+//   currency: string;
+// }
 
 export interface MyProductsArrayInterface extends Array<Product> {}
 
-interface ProductCardProps {
-  product: MyProductsArrayInterface;
-}
-const Featured = ({ product }: ProductCardProps) => {
-  console.log('FEATURED IMAGE FORMAT', product);
-
+// interface ProductCardProps {
+//   product: MyProductsArrayInterface;
+// }
+const Featured = ({ product }: SingleProduct) => {
   const featuredProduct = product.filter(
     (product: { featured: boolean }): any => product.featured
   );
@@ -61,7 +59,9 @@ const Featured = ({ product }: ProductCardProps) => {
             </div>
 
             <div className={style.featured__wrapper}>
-              <img
+              <Image
+                height="550"
+                width="1700"
                 src={product.image && product.image.formats.large.url}
                 className={style.featured__featuredImage}
                 alt=""
@@ -74,30 +74,6 @@ const Featured = ({ product }: ProductCardProps) => {
           </>
         )
       )}
-      {/* <div className={style.featured__show}>
-        {featuredProduct?.map(
-          (product: {
-            name:
-              | boolean
-              | React.ReactChild
-              | React.ReactFragment
-              | React.ReactPortal
-              | null
-              | undefined;
-            image: { formats: { large: { url: string | undefined } } };
-          }) => (
-            <>
-              <div className={style.featured__show}>
-                <AddToCartButton
-                  onClick={() => onAddToCart(product)}
-                  title={'Add To Cart'}
-                  fullWidth="fullWidth"
-                />
-              </div>
-            </>
-          )
-        )}
-      </div> */}
     </div>
   );
 };

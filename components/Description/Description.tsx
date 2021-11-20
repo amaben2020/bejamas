@@ -5,21 +5,16 @@ interface IDescription {
   text: any[];
   title: any[];
   category: any[];
-  recommendations: any;
+  recommendations?: any;
 }
-
-const Description = ({
-  text,
-  category,
-  title,
-  recommendations,
-}: IDescription) => {
-  const recSize = Object.values(recommendations)
-    .map((r: any) => r.image.size)
-    .filter((size) => size > 50);
-  const recSize2 = Object.values(recommendations)
-    .map((r: any) => r.image.size)
-    .filter((size) => size < 25);
+// recommendations,
+const Description = ({ text, category, title }: IDescription) => {
+  // const recSize = Object.values(recommendations)
+  //   .map((r: any) => r.image.size)
+  //   .filter((size) => size > 50);
+  // const recSize2 = Object.values(recommendations)
+  //   .map((r: any) => r.image.size)
+  //   .filter((size) => size < 25);
 
   return (
     <div className={styles.description__layout}>
@@ -50,7 +45,7 @@ const Description = ({
             People also buy
           </h4>
           <div className={styles.description__layout__details__imageWrapper}>
-            {recommendations?.map(
+            {/* {recommendations?.map(
               (recommendation: {
                 name:
                   | boolean
@@ -69,9 +64,9 @@ const Description = ({
                   alt={recommendation.image.name}
                 />
               )
-            )}{' '}
+            )} */}
           </div>
-          <div className={styles.description__layout__details__textWrapper}>
+          {/* <div className={styles.description__layout__details__textWrapper}>
             <h3
               className={
                 styles.description__layout__details__textWrapper__heading
@@ -89,7 +84,7 @@ const Description = ({
             >
               size: {recSize2}mb
             </p>
-          </div>
+          </div> */}
         </Col>
       </Row>
     </div>

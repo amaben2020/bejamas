@@ -78,7 +78,7 @@ const Home = ({
 
   /** Doing this on the client side due to SEO, server side pagination is very easy to implement as well. */
   const [pageNumber, setPageNumber] = React.useState(0);
-  const productsPerPage = 3;
+  const productsPerPage = 6;
   //non-null assertion operator on line 93, 95
   const pagesVisited = pageNumber * productsPerPage;
   const paginatedProductData = Object.values(products!).slice(
@@ -101,33 +101,27 @@ const Home = ({
 
   const [o, setOrderBy] = useState('asc');
 
+  const productDetails = Object.values(products!).filter(
+    (prod: IProduct) => prod.featured
+  );
+
   return (
     <div>
       <Featured product={products} />
-      {/* <DescriptionLayout>
+      <DescriptionLayout>
         <Description
           text={productDetails.map((d: any) => d.details)}
-          category={productDetails.map((d: any) => d.category)}
+          category={productDetails.map((d: any) => d.categoryName)}
           title={productDetails.map((d: any) => d.name)}
-          recommendations={recommendations}
+          // recommendations={recommendations}
         />
-      </DescriptionLayout> */}
+      </DescriptionLayout>
       {status === 'loading' && (
         <p>
           <Loading />
         </p>
       )}
       {status === 'error' && <p>Something went wrong</p>}
-
-      {categoryData.length > 0 &&
-        categoryData.map((category) =>
-          categoryCheckbox(category, ids, selectCategory)
-        )}
-
-      {pricesData.length > 0 &&
-        pricesData.map((prices) =>
-          priceCheckbox(prices, priceIds, selectPrices)
-        )}
 
       {/* <SortInput sortValues={sortValues} handleSort={handleSort} /> */}
 
@@ -136,17 +130,28 @@ const Home = ({
         <div className={styles.photography__section__modal}>
           <div onClick={() => setStatus(true)}>
             {' '}
-            <Image src="/modalIcon.svg" height="30" width="35" />{' '}
+            <Image
+              src="/modalIcon.svg"
+              alt="modal-icon"
+              height="30"
+              width="35"
+            />{' '}
           </div>
 
           <div>
             {modalStatus && (
               <CustomModal closeModal={() => setStatus(false)}>
                 <p className={style.modalText}>Filter</p>
-                {/* <Checkboxes list={category} handleFilters={undefined} /> */}
+                {categoryData.length > 0 &&
+                  categoryData.map((category) =>
+                    categoryCheckbox(category, ids, selectCategory)
+                  )}
                 <hr />
                 <p className={style.modalText}>Price range</p>
-                {/* <Checkboxes list={price} handleFilters={undefined} /> */}
+                {pricesData.length > 0 &&
+                  pricesData.map((prices) =>
+                    priceCheckbox(prices, priceIds, selectPrices)
+                  )}
                 <div className={style.modalButtonArea}>
                   {' '}
                   <AddToCartButton
@@ -168,12 +173,17 @@ const Home = ({
       <Row className={styles.productSection__wrapper}>
         <Col lg={3} className={styles.checkboxArea}>
           <h2 className={styles.myCheckBoxTitle}>Category</h2>
-          {/* <Checkboxes list={category} handleFilters={undefined} /> */}
-
+          {categoryData.length > 0 &&
+            categoryData.map((category) =>
+              categoryCheckbox(category, ids, selectCategory)
+            )}
           <hr />
 
           <h2 className={styles.myCheckBoxTitle}>Price range</h2>
-          {/* <Checkboxes list={price} handleFilters={undefined} /> */}
+          {pricesData.length > 0 &&
+            pricesData.map((prices) =>
+              priceCheckbox(prices, priceIds, selectPrices)
+            )}
         </Col>
 
         <Col lg={9} className={styles.productSection__wrapper__productArea}>

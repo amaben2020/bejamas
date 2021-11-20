@@ -16,8 +16,6 @@ const CategoryInput = ({
     <div>
       {' '}
       <div key={category.id} className={styles.myCheckbox}>
-        <span>{category.id}</span>
-        <span>{category.name}</span>
         <span>
           <input
             className={styles.myCheckbox__input}
@@ -27,6 +25,9 @@ const CategoryInput = ({
             checked={ids.includes(category.id) ? true : false}
           />
         </span>
+        <label className={styles.myCheckbox__label} htmlFor={category.name}>
+          {category.name}{' '}
+        </label>
       </div>
     </div>
   );

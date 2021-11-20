@@ -22,7 +22,7 @@
     "test/greeting.test.js",
     "jest.config.js",
     "components/productCard.test.js",
-, "next.config.js"    "tsconfig.test.json"
+    "tsconfig.test.json"
   ],
   "exclude": ["node_modules"]
 }

@@ -5,6 +5,9 @@ import ProductCard from '../components/ProductCard';
 describe('Item', () => {
   const product = {
     id: 1,
+    filter: function (a: any) {
+      return a;
+    },
     name: 'Samurai King Resting',
     featured: true,
     bestseller: false,

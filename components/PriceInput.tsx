@@ -1,5 +1,6 @@
 import React from 'react';
 import { IPrice } from '../interface/products';
+import styles from './../styles/checkbox.module.scss';
 
 interface PriceInputProps {
   prices: IPrice;
@@ -9,17 +10,17 @@ interface PriceInputProps {
 
 const PriceInput = ({ prices, selectPrices, priceIds }: PriceInputProps) => {
   return (
-    <div>
-      <span>{prices.label}</span>
-
-      <span>
-        <input
-          type="checkbox"
-          value={prices.price}
-          onChange={(event) => selectPrices(event)}
-          checked={priceIds.includes(prices.price) ? true : false}
-        />
-      </span>
+    <div className={styles.myCheckbox}>
+      <input
+        className={styles.myCheckbox__input}
+        type="checkbox"
+        value={prices.price}
+        onChange={(event) => selectPrices(event)}
+        checked={priceIds.includes(prices.price) ? true : false}
+      />
+      <label className={styles.myCheckbox__label} htmlFor={prices.label}>
+        {prices.label}
+      </label>
     </div>
   );
 };

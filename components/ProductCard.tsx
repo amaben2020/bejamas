@@ -30,7 +30,7 @@ const ProductCard = ({ product, onAdd }: ProductCardElement) => {
         </button>
       </div>
       <div className={styles.card__priceArea}>
-        {/* <p className={styles.card__priceArea__smallText}>{category}</p> */}
+        <p className={styles.card__priceArea__smallText}>{categoryName}</p>
         <p className={styles.card__priceArea__largeText}>{product.name}</p>
         <p className={styles.card__priceArea__smallText}> $ {value}</p>
       </div>
