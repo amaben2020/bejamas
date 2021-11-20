@@ -7,7 +7,7 @@ const useCart = () => {
   const useCartContextValue = React.useContext<CartContextType | undefined>(
     CartContext
   );
-
+  //@ts-ignore
   const { onCloseCart, onAddToCart, cartState, onClearCart } =
     useCartContextValue;
 

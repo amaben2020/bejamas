@@ -24,5 +24,6 @@
     "components/productCard.test.js",
     "tsconfig.test.json"
   ],
+  "typeRoots": ["../node_modules/@types", "../@types"],
   "exclude": ["node_modules"]
 }
