@@ -4,19 +4,16 @@ import styles from '../styles/card.module.scss';
 import Image from 'next/image';
 
 const ProductCard = ({ product, onAdd }: ProductCardElement) => {
-  const { name, image, id, value, categoryName } = product;
-
-  //WORKING COMPONENT
-  console.log('PRODUCT IN CARD', product.image);
+  const { name, image, id, value, categoryName, bestseller } = product;
 
   return (
     <div>
       <div className={styles.card} key={id}>
-        {/* <div>
+        <div>
           {bestseller && (
             <p className={styles.card__bestseller}> Best Seller</p>
           )}
-        </div> */}
+        </div>
         <Image
           width="500"
           height="680"
@@ -35,16 +32,6 @@ const ProductCard = ({ product, onAdd }: ProductCardElement) => {
         <p className={styles.card__priceArea__smallText}> $ {value}</p>
       </div>
     </div>
-
-    // <div>
-    //   <div key={id}>
-    //     <p>{name}</p>
-    //     <p>${value}</p>
-    //     <p>{categoryName}</p>
-
-    //     <button onClick={() => onAdd(product)}>Add to cart</button>
-    //   </div>
-    // </div>
   );
 };
 

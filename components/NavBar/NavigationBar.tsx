@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './../../styles/navigationBar.module.scss';
 import { Container, Navbar } from 'react-bootstrap';
 import CartItems from '../Cart/CartItems';
@@ -10,14 +10,25 @@ const NavigationBar = () => {
 
   const { onCloseCart, onAddToCart, cartState, onClearCart } = useCart();
 
-  const { cartItems } = cartState;
+  const { cartItems, showCart } = cartState;
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleCartHandler = () => {
+  // const toggleCartHandler = () => {
+  //   setIsOpen((previousState) => !previousState);
+  // };
+
+  const toggleClose = () => {
+    onCloseCart();
     setIsOpen((previousState) => !previousState);
-    //return toggleCart();
   };
+
+  useEffect(() => {
+    if (showCart === true) {
+      setIsOpen((previousState) => !previousState);
+      //setIsOpen(true);
+    }
+  }, [showCart]);
 
   return (
     <div className={styles.mynav}>
@@ -30,10 +41,7 @@ const NavigationBar = () => {
           </div>
 
           <div>
-            <Navbar.Brand
-              className={styles.mynav__icon}
-              onClick={toggleCartHandler}
-            >
+            <Navbar.Brand className={styles.mynav__icon} onClick={toggleClose}>
               <div className={styles.mynav__CartIcon}>
                 <Image src="/Group 3.1.png" alt="me" width="37" height="34" />{' '}
                 <p
@@ -49,7 +57,8 @@ const NavigationBar = () => {
             </Navbar.Brand>
           </div>
 
-          {isOpen && <CartItems onClose={toggleCartHandler} />}
+          {/* {displayCart()} */}
+          {isOpen && <CartItems onClose={toggleClose} />}
         </div>
       </Container>
     </div>

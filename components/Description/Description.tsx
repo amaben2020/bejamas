@@ -1,20 +1,27 @@
 import React from 'react';
 import styles from './../../styles/descriptionLayout.module.scss';
 import { Col, Row } from 'react-bootstrap';
+import { IProduct, IRecommendation } from '../../interface/products';
+import Image from 'next/image';
 interface IDescription {
-  text: any[];
-  title: any[];
-  category: any[];
-  recommendations?: any;
+  featuredText: string[];
+  featuredTitle: string[];
+  featuredCategory: string[];
+  recommendations: IProduct[];
 }
 // recommendations,
-const Description = ({ text, category, title }: IDescription) => {
-  // const recSize = Object.values(recommendations)
-  //   .map((r: any) => r.image.size)
-  //   .filter((size) => size > 50);
-  // const recSize2 = Object.values(recommendations)
-  //   .map((r: any) => r.image.size)
-  //   .filter((size) => size < 25);
+const Description = ({
+  featuredText,
+  featuredCategory,
+  featuredTitle,
+  recommendations,
+}: IDescription) => {
+  const recSize = Object.values(recommendations)
+    .map((r: any) => r.image.size)
+    .filter((size) => size > 50);
+  const recSize2 = Object.values(recommendations)
+    .map((r: any) => r.image.size)
+    .filter((size) => size < 25);
 
   return (
     <div className={styles.description__layout}>
@@ -26,12 +33,12 @@ const Description = ({ text, category, title }: IDescription) => {
           className={styles.description__layout__textarea}
         >
           <h2 className={styles.description__layout__textarea__headingLarge}>
-            About the {title}
+            About the {featuredTitle}
           </h2>
           <h4 className={styles.description__layout__textarea__headingSmall}>
-            {category}
+            {featuredCategory}
           </h4>
-          <p className={styles.description__layout__text}> {text} </p>
+          <p className={styles.description__layout__text}> {featuredText} </p>
         </Col>
 
         <Col
@@ -45,28 +52,23 @@ const Description = ({ text, category, title }: IDescription) => {
             People also buy
           </h4>
           <div className={styles.description__layout__details__imageWrapper}>
-            {/* {recommendations?.map(
-              (recommendation: {
-                name:
-                  | boolean
-                  | React.ReactChild
-                  | React.ReactFragment
-                  | React.ReactPortal
-                  | null
-                  | undefined;
-                image: any;
-              }) => (
-                <img
-                  className={
-                    styles.description__layout__details__imageWrapper__img
-                  }
+            {recommendations?.map((recommendation: IProduct) => (
+              <div
+                key={recommendation.image.url}
+                className={
+                  styles.description__layout__details__imageWrapper__img
+                }
+              >
+                <Image
+                  width="160"
+                  height="250"
                   src={recommendation.image.url}
                   alt={recommendation.image.name}
                 />
-              )
-            )} */}
+              </div>
+            ))}
           </div>
-          {/* <div className={styles.description__layout__details__textWrapper}>
+          <div className={styles.description__layout__details__textWrapper}>
             <h3
               className={
                 styles.description__layout__details__textWrapper__heading
@@ -84,7 +86,7 @@ const Description = ({ text, category, title }: IDescription) => {
             >
               size: {recSize2}mb
             </p>
-          </div> */}
+          </div>
         </Col>
       </Row>
     </div>

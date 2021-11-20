@@ -1,5 +1,7 @@
 export interface IProduct {
-  filter(arg0: (product: { featured: boolean }) => any);
+  recommendation: unknown;
+  details: any;
+  filter(arg0: (product: { featured: boolean }) => boolean): IProduct[];
   id: number;
   name: string;
   price: number;
@@ -9,6 +11,17 @@ export interface IProduct {
   value: number;
   bestseller: boolean;
   categoryName: string;
+}
+
+export interface IRecommendation {
+  details?: string;
+  size2: string;
+  image: string;
+  size: string;
+}
+
+export interface IRecommendationList {
+  recommendations?: IRecommendation;
 }
 
 export interface SingleProduct {

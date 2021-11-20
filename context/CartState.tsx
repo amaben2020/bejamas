@@ -32,6 +32,12 @@ export const CartProvider = ({ children }: Props) => {
       type: ADD_TO_CART,
       payload: product,
     });
+
+    cartActionDispatcher({
+      type: CLOSE_CART_DROPDOWN,
+    });
+
+    // onCloseCart();
     toast.success(`${product.name} added to cart`);
   }, []);
 

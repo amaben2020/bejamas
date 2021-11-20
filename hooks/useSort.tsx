@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const useSort = () => {
-  const sortValues = ['price'];
+  const sortValues = ['name'];
   const [sortValue, setSortValue] = useState(sortValues);
 
   const orderValues = ['asc'];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 //import CartContext from '../../context/CartContext';
 import Image from 'next/image';
@@ -13,11 +13,17 @@ interface ICartItems {
   value?: number;
 }
 
-const CartItems = ({ onClose }: any) => {
-  // const { cartItems, removeFromCart } = useContext(CartContext);
+interface IClose {
+  //void doesn't return any value in the execution context.
+  onClose: () => void;
+}
 
-  const { cartState, onClearCart } = useCart();
-  const { cartItems } = cartState;
+const CartItems = ({ onClose }: IClose) => {
+  // const { cartItems, removeFromCart } = useContext(CartContext);
+  console.log('ONCLOSE FN', onClose);
+
+  const { cartState, onClearCart, onCloseCart } = useCart();
+  const { cartItems, showCart } = cartState;
   const cartItem = [...cartItems];
 
   const clearItems = () => {
@@ -26,7 +32,6 @@ const CartItems = ({ onClose }: any) => {
 
   return (
     <div className={styles.cartItems}>
-      {' '}
       <div className={styles.sticky}>
         <div className={styles.cartItems__paddingarea}>
           {cartItems.length > 0 && (
@@ -36,10 +41,9 @@ const CartItems = ({ onClose }: any) => {
           )}
 
           {cartItems.length === 0 && (
-            <p className={styles.cartItems__flexarea__text}>
-              {' '}
-              Please add an item to the cart &#x1F6D2; &#x1F6D2; &#x1F6D2;
-            </p>
+            <div className="d-flex justify-content-center mt-4">
+              <p> Please add items to cart &#x1F6D2;</p>
+            </div>
           )}
           {cartItem?.map((c: ICartItems) => (
             <div key={c._id} className={styles.cartItems__flexarea}>

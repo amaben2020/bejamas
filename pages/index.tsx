@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { QueryFunctionContext, useQuery, useQueryClient } from 'react-query';
-import SortInput from '../components/SortInput';
+import { useQuery } from 'react-query';
 import {
   ICategory,
   IPrice,
@@ -8,44 +7,34 @@ import {
   Product,
   ProductCategoryAndPrice,
 } from '../interface/products';
-//import styles from '../styles/Home.module.css';
 import useSelectCategory from '../hooks/useSelectCategory';
-import React from 'react';
 import useSelectPrices from '../hooks/useSelectPrice';
 import { getProductQueryBody } from '../api/filterDataByQueryStrings';
 import { toast } from 'react-toastify';
 import useCart from '../hooks/useCart';
-import { CartContext } from '../context/CartContext';
 import { Key } from '../types/queryParams';
-import { fetchDataBody } from '../api/fetchDataBody';
-import CategoryInput from '../components/CategoryInput';
-import PriceInput from '../components/PriceInput';
-import usePagination from '../hooks/usePagination';
 import AppPagination from '../components/Pagination/PaginationButton';
 import { categoryCheckbox } from '../utils/categoryCheckbox';
 import { priceCheckbox } from '../utils/priceChekbox';
-import ProductCart from '../components/ProductCard';
 import Loading from '../components/Loading';
 import Featured from '../components/Featured';
 import DescriptionLayout from '../components/Layout/DescriptionLayout';
 import Description from '../components/Description/Description';
 import styles from './../styles/product.module.scss';
-import CustomModal from '../components/Modal/CustomModal';
-import style from './../styles/modal.module.scss';
-import AddToCartButton from '../components/Button/AddToCartButton';
 import { Col, Row } from 'react-bootstrap';
 import Image from 'next/image';
 import useSort from '../hooks/useSort';
 import ProductCard from '../components/ProductCard';
 import SortAndFilter from '../components/SortAndFilter';
+import ModalDisplay from '../components/ModalDisplay';
+
 const API_URL = 'http://localhost:1337';
 const resource = 'products';
 
-// using function composition technique to reduce file size
+// using function composition technique to reduce index.js code length
 const getProducts = async (key: Key): Promise<Product[]> => {
   return getProductQueryBody(key, API_URL, resource);
 };
-
 const Home = ({
   productsData,
   categoryData,
@@ -77,9 +66,9 @@ const Home = ({
   const { onCloseCart, onAddToCart, cartState, onClearCart } = useCart();
 
   /** Doing this on the client side due to SEO, server side pagination is very easy to implement as well. */
-  const [pageNumber, setPageNumber] = React.useState(0);
+  const [pageNumber, setPageNumber] = useState(0);
   const productsPerPage = 6;
-  //non-null assertion operator on line 93, 95
+  //non-null assertion operator on line 84, 88
   const pagesVisited = pageNumber * productsPerPage;
   const paginatedProductData = Object.values(products!).slice(
     pagesVisited,
@@ -93,27 +82,31 @@ const Home = ({
   };
 
   const onAdd = (product: IProduct): void => {
-    if (!product) return;
+    if (!product) {
+      throw new Error('Product is undefined');
+    }
     return onAddToCart(product);
   };
 
-  const [modalStatus, setStatus] = useState(false);
-
-  const [o, setOrderBy] = useState('asc');
-
+  const [isModalOpen, setStatus] = useState(false);
   const productDetails = Object.values(products!).filter(
     (prod: IProduct) => prod.featured
   );
 
+  const recommendations = Object.values(products!).filter(
+    (recommendation: IProduct) => recommendation.recommendation
+  );
+
+  console.log(productsData);
   return (
     <div>
       <Featured product={products} />
       <DescriptionLayout>
         <Description
-          text={productDetails.map((d: any) => d.details)}
-          category={productDetails.map((d: any) => d.categoryName)}
-          title={productDetails.map((d: any) => d.name)}
-          // recommendations={recommendations}
+          featuredText={productDetails.map((d: IProduct) => d.details)}
+          featuredCategory={productDetails.map((d: IProduct) => d.categoryName)}
+          featuredTitle={productDetails.map((d: IProduct) => d.name)}
+          recommendations={recommendations}
         />
       </DescriptionLayout>
       {status === 'loading' && (
@@ -122,8 +115,6 @@ const Home = ({
         </p>
       )}
       {status === 'error' && <p>Something went wrong</p>}
-
-      {/* <SortInput sortValues={sortValues} handleSort={handleSort} /> */}
 
       <div className={styles.photography__section}>
         <SortAndFilter handleSort={handleSort} setOrderValue={setOrderValue} />
@@ -139,32 +130,17 @@ const Home = ({
           </div>
 
           <div>
-            {modalStatus && (
-              <CustomModal closeModal={() => setStatus(false)}>
-                <p className={style.modalText}>Filter</p>
-                {categoryData.length > 0 &&
-                  categoryData.map((category) =>
-                    categoryCheckbox(category, ids, selectCategory)
-                  )}
-                <hr />
-                <p className={style.modalText}>Price range</p>
-                {pricesData.length > 0 &&
-                  pricesData.map((prices) =>
-                    priceCheckbox(prices, priceIds, selectPrices)
-                  )}
-                <div className={style.modalButtonArea}>
-                  {' '}
-                  <AddToCartButton
-                    inverted="inverted"
-                    title="Clear"
-                    onClick={() => console.log('yeah')}
-                  />
-                  <AddToCartButton
-                    title="Save"
-                    onClick={() => console.log('yeah')}
-                  />
-                </div>
-              </CustomModal>
+            {isModalOpen && (
+              <ModalDisplay
+                categoryData={categoryData}
+                pricesData={pricesData}
+                onAddToCart={onAdd}
+                onClearCart={onClearCart}
+                onCloseCart={onCloseCart}
+                setStatus={setStatus}
+                priceIds={priceIds}
+                ids={ids}
+              />
             )}
           </div>
         </div>
