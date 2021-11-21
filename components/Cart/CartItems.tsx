@@ -9,6 +9,8 @@ const CartItems = ({ onClose }: IClose) => {
   const { cartItems } = cartState;
   const cartItem = [...cartItems];
 
+  console.log('cartITEM', cartItem);
+
   const clearItems = () => {
     onClearCart();
     setTimeout(() => {
@@ -32,7 +34,7 @@ const CartItems = ({ onClose }: IClose) => {
             </div>
           )}
           {cartItem?.map((c: ICartItems) => (
-            <div key={c._id} className={styles.cartItems__flexarea}>
+            <div key={c.id} className={styles.cartItems__flexarea}>
               <div>
                 <p className={styles.cartItems__flexarea__text}>{c.name}</p>
                 <p className={styles.cartItems__flexarea__price}>${c.value}</p>

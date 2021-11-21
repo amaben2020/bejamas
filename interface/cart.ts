@@ -13,7 +13,7 @@ export interface IState {
 export interface ICartItems {
   image: { formats: { thumbnail: { url: string } } };
   name: string;
-  _id: string;
+  id: string;
   value: number;
 }
 

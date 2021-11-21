@@ -1,10 +1,5 @@
 import useCart from '../../hooks/useCart';
-import {
-  IProduct,
-  SingleProduct,
-  ProductCategoryAndPrice,
-  Product,
-} from '../../interface/products';
+import { IProduct } from '../../interface/products';
 import style from './../../styles/featured.module.scss';
 import AddToCartButton from '../Button/AddToCartButton';
 import Image from 'next/image';
@@ -34,8 +29,9 @@ const Featured = ({ product }: IMyChildren) => {
 
           <div className={style.featured__wrapper}>
             <Image
-              height="550"
+              height="580"
               width="1700"
+              loading="lazy"
               //@ts-ignore
               src={prod.image && prod.image.formats.large.url}
               className={style.featured__featuredImage}
