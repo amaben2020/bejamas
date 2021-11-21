@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProductCardElement } from '../interface/product';
-import styles from '../styles/card.module.scss';
+import { ProductCardElement } from '../../interface/product';
+import styles from './../../styles/card.module.scss';
 import Image from 'next/image';
 
 const ProductCard = ({ product, onAdd }: ProductCardElement) => {

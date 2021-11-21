@@ -1,12 +1,12 @@
-import useCart from '../hooks/useCart';
+import useCart from '../../hooks/useCart';
 import {
   IProduct,
   SingleProduct,
   ProductCategoryAndPrice,
   Product,
-} from '../interface/products';
-import style from './../styles/featured.module.scss';
-import AddToCartButton from './Button/AddToCartButton';
+} from '../../interface/products';
+import style from './../../styles/featured.module.scss';
+import AddToCartButton from '../Button/AddToCartButton';
 import Image from 'next/image';
 
 interface IMyChildren {

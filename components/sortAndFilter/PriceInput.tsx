@@ -1,6 +1,6 @@
 import React from 'react';
-import { IPrice } from '../interface/products';
-import styles from './../styles/checkbox.module.scss';
+import { IPrice } from '../../interface/products';
+import styles from './../../styles/checkbox.module.scss';
 
 interface PriceInputProps {
   prices: IPrice;

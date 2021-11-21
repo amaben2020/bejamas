@@ -1,4 +1,4 @@
-import CategoryInput from '../components/CategoryInput';
+import CategoryInput from '../components/sortAndFilter/CategoryInput';
 import { ICategory } from '../interface/products';
 
 /** Code is self documenting */

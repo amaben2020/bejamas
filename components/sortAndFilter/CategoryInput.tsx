@@ -1,6 +1,6 @@
 import React from 'react';
-import { ICategory } from '../interface/products';
-import styles from './../styles/checkbox.module.scss';
+import { ICategory } from '../../interface/products';
+import styles from './../../styles/checkbox.module.scss';
 interface CategoryInputProps {
   category: ICategory;
   selectCategory: (event: React.ChangeEvent<HTMLInputElement>) => void;

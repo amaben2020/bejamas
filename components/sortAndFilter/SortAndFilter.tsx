@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './../styles/product.module.scss';
+import styles from './../../styles/product.module.scss';
 
 interface ISortAndFilter {
   handleSort: (e: React.ChangeEvent<HTMLSelectElement>) => void;

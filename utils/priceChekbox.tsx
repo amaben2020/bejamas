@@ -1,4 +1,4 @@
-import PriceInput from '../components/PriceInput';
+import PriceInput from '../components/sortAndFilter/PriceInput';
 import { IPrice } from '../interface/products';
 
 /** Code is self documenting */

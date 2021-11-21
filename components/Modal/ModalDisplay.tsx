@@ -1,12 +1,12 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import AddToCartButton from './Button/AddToCartButton';
-import CustomModal from './Modal/CustomModal';
-import { priceCheckbox } from '../utils/priceChekbox';
-import style from './../styles/modal.module.scss';
-import { ICategory, IPrice, IProduct } from '../interface/products';
-import { categoryCheckbox } from '../utils/categoryCheckbox';
-import useSelectCategory from '../hooks/useSelectCategory';
-import useSelectPrices from '../hooks/useSelectPrice';
+import AddToCartButton from '../Button/AddToCartButton';
+import CustomModal from './CustomModal';
+import { priceCheckbox } from '../../utils/priceChekbox';
+import style from './../../styles/modal.module.scss';
+import { ICategory, IPrice, IProduct } from '../../interface/products';
+import { categoryCheckbox } from '../../utils/categoryCheckbox';
+import useSelectCategory from '../../hooks/useSelectCategory';
+import useSelectPrices from '../../hooks/useSelectPrice';
 interface ModalDisplayProps {
   ids: number[];
   onAddToCart: (products: IProduct) => void;

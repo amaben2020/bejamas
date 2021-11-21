@@ -1,6 +1,3 @@
-import React, { useState } from 'react';
-import { useContext } from 'react';
-//import CartContext from '../../context/CartContext';
 import Image from 'next/image';
 import styles from './../../styles/navigationBar.module.scss';
 import ClearCartButton from '../Button/AddToCartButton';

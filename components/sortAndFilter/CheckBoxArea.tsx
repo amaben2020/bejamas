@@ -1,10 +1,10 @@
 import React from 'react';
-import { categoryCheckbox } from '../utils/categoryCheckbox';
+import { categoryCheckbox } from '../../utils/categoryCheckbox';
 import styles from '../styles/checkbox.module.scss';
-import { priceCheckbox } from '../utils/priceChekbox';
-import useSelectCategory from '../hooks/useSelectCategory';
-import useSelectPrices from '../hooks/useSelectPrice';
-import { ICategory, IPrice } from '../interface/products';
+import { priceCheckbox } from '../../utils/priceChekbox';
+import useSelectCategory from '../../hooks/useSelectCategory';
+import useSelectPrices from '../../hooks/useSelectPrice';
+import { ICategory, IPrice } from '../../interface/products';
 
 interface IProps {
   categoryData: ICategory[];

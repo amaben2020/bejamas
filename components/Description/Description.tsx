@@ -61,8 +61,8 @@ const Description = ({
                 }
               >
                 <Image
-                  width="160"
-                  height="250"
+                  width="170"
+                  height="270"
                   src={recommendation.image.url}
                   alt={recommendation.image.name}
                 />
