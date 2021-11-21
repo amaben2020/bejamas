@@ -34,10 +34,6 @@ const CartItems = ({ onClose }: IClose) => {
           )}
 
           {cartItems.length === 0 && (
-            //  <p onClick={onClose} className={styles.cartItems__paddingarea__X}>
-            //   &#10006;
-            // </p>
-
             <div className="d-flex justify-content-center mt-4">
               <p> Please add items to cart &#x1F6D2;</p>
             </div>
