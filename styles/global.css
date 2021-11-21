@@ -1,0 +1,6 @@
+input[type='checkbox'] {
+  transform: scale(2);
+  margin: 10px;
+  cursor: pointer;
+  filter: grayscale(1);
+}
