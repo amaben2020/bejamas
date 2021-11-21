@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react';
 import styles from './../../styles/navigationBar.module.scss';
 import { Container, Navbar } from 'react-bootstrap';
 import CartItems from '../Cart/CartItems';
-//import CartContext from './../../context/CartContext';
 import Image from 'next/image';
 import useCart from '../../hooks/useCart';
-const NavigationBar = () => {
-  //const { toggleCart, cartItems, showCart } = useContext(CartContext);
 
+const NavigationBar = () => {
   const { onCloseCart, onAddToCart, cartState, onClearCart } = useCart();
 
   const { cartItems, showCart } = cartState;
 
   const [isOpen, setIsOpen] = useState(false);
-
-  // const toggleCartHandler = () => {
-  //   setIsOpen((previousState) => !previousState);
-  // };
 
   const toggleClose = () => {
     onCloseCart();

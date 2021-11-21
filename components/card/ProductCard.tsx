@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const ProductCard = ({ product, onAdd }: ProductCardElement) => {
   const { name, image, id, value, categoryName, bestseller } = product;
-  console.log('IMAGE', image);
+
   return (
     <div>
       <div className={styles.card} key={id}>
