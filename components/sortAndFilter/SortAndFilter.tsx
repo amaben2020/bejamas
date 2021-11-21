@@ -45,7 +45,7 @@ const SortAndFilter = ({ handleSort, setOrderValue }: ISortAndFilter) => {
           <option value="name" className={styles.sortText2}>
             Alphabetically
           </option>
-          <option value="price" className={styles.sortText2}>
+          <option value="value" className={styles.sortText2}>
             Price
           </option>
         </select>
