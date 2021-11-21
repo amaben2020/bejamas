@@ -10,7 +10,10 @@ const CartItems = ({ onClose }: IClose) => {
   const cartItem = [...cartItems];
 
   const clearItems = () => {
-    return onClearCart();
+    onClearCart();
+    setTimeout(() => {
+      onClose();
+    }, 2000);
   };
 
   return (

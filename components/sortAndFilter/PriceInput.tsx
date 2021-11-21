@@ -9,9 +9,6 @@ interface PriceInputProps {
 }
 
 const PriceInput = ({ prices, selectPrices, priceIds }: PriceInputProps) => {
-  console.log('PRICES', prices);
-  console.log('PRICE IDS', priceIds);
-
   return (
     <div className={styles.myCheckbox}>
       <input

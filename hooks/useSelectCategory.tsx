@@ -9,7 +9,7 @@ const useSelectCategory = () => {
     // If true, this checkbox is already checked
     // Otherwise, it is not selected yet
     if (ids.includes(selectedId)) {
-      const newIds = ids.filter((id: any) => id !== selectedId);
+      const newIds = ids.filter((id: number) => id !== selectedId);
       setIds(newIds);
     } else {
       const newIds = [...ids];

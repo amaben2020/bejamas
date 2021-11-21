@@ -73,6 +73,7 @@
   background: #fff;
   overflow-y: scroll;
   z-index: 5;
+  transition: width 3s ease;
 
   @media screen and (max-width: 768px) {
     right: 10;

@@ -26,7 +26,6 @@ const NavigationBar = () => {
   useEffect(() => {
     if (showCart === true) {
       setIsOpen((previousState) => !previousState);
-      //setIsOpen(true);
     }
   }, [showCart]);
 
@@ -57,7 +56,6 @@ const NavigationBar = () => {
             </Navbar.Brand>
           </div>
 
-          {/* {displayCart()} */}
           {isOpen && <CartItems onClose={toggleClose} />}
         </div>
       </Container>

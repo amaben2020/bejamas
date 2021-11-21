@@ -40,16 +40,8 @@ const SortAndFilter = ({ handleSort, setOrderValue }: ISortAndFilter) => {
         >
           &#8595;
         </button>
-        <span className={styles.sortText}>Sort By</span>
-        <select
-          style={{
-            marginLeft: '2vw',
-            padding: '2vh',
-            outline: 'none',
-            border: 'none',
-          }}
-          onChange={handleSort}
-        >
+        <span className={styles.sortText}>Sort By </span>
+        <select className={styles.sortText2} onChange={handleSort}>
           <option value="name" className={styles.sortText2}>
             Alphabetically
           </option>
