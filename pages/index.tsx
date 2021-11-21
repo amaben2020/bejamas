@@ -135,6 +135,7 @@ const Home = ({
               //   //ids={ids}
               // />
 
+              //This has to be done on page level
               <CustomModal closeModal={() => setStatus(false)}>
                 <p className={style.modalText}>Filter</p>
                 {categoryData.length > 0 &&
