@@ -62,20 +62,6 @@ export const getProductQueryBody = async (
     return response.json();
   }
 
-  // if (
-  //   categoryQueryString ||
-  //   priceQueryString ||
-  //   sortQueryString ||
-  //   priceLessThan20 ||
-  //   price20To100 ||
-  //   priceEQ1000
-  // ) {
-  //   const response = await fetch(
-  //     `${API_URL}/${resource}?${sortQueryString}&${categoryQueryString}&${priceLessThan20}&${price20To100}&${priceEQ1000}`
-  //   );
-  //   return response.json();
-  // }
-
   // This runs by default if no condition is specified or when the component mounts
   const response = await fetch(`${API_URL}/${resource}`);
   return response.json();
