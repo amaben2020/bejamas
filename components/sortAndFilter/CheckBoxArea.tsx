@@ -14,7 +14,6 @@ interface IProps {
 }
 
 const CheckBoxArea = ({ categoryData, pricesData, ids, priceIds }: IProps) => {
-  console.log('CHECKBOX AREA', ids);
   const { selectCategory } = useSelectCategory();
   const { selectPrices } = useSelectPrices();
   return (

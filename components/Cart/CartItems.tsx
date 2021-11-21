@@ -9,11 +9,8 @@ const CartItems = ({ onClose }: IClose) => {
   const { cartItems } = cartState;
   const cartItem = [...cartItems];
 
-  console.log('cartITEM', cartItem);
-
   const clearItems = () => {
     onClearCart();
-
     onClose();
   };
 

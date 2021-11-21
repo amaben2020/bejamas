@@ -10,7 +10,6 @@ interface IMyChildren {
 
 const Featured = ({ product }: IMyChildren) => {
   const featuredProduct = product.filter((p) => p.featured);
-
   const { onAddToCart } = useCart();
 
   return (

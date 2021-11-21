@@ -67,7 +67,7 @@ const Home = ({
     toast.success(`Welcome to Bejamas`);
   }, []);
 
-  const { onCloseCart, onAddToCart, onClearCart } = useCart();
+  const { onAddToCart, onClearCart } = useCart();
 
   /** Implementing Pagination on the client side due to SEO, server side pagination is super easy to implement as well. */
   const [pageNumber, setPageNumber] = useState(0);

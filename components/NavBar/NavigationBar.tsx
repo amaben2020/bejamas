@@ -6,7 +6,7 @@ import Image from 'next/image';
 import useCart from '../../hooks/useCart';
 
 const NavigationBar = () => {
-  const { onCloseCart, onAddToCart, cartState, onClearCart } = useCart();
+  const { onCloseCart, cartState } = useCart();
 
   const { cartItems, showCart } = cartState;
 
