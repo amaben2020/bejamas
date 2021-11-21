@@ -19,7 +19,7 @@ interface IClose {
 
 const CartItems = ({ onClose }: IClose) => {
   const { cartState, onClearCart } = useCart();
-  const { cartItems, showCart } = cartState;
+  const { cartItems } = cartState;
   const cartItem = [...cartItems];
 
   const clearItems = () => {

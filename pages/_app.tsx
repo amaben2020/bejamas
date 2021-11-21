@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Layout from '../components/Layout/Layout';
 import { CartProvider } from '../context/CartState';
 import '../styles/globals.scss';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
@@ -14,7 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Layout>
           <ToastContainer position="top-center" />
-
           <Component {...pageProps} />
         </Layout>
       </QueryClientProvider>

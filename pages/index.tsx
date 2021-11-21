@@ -30,11 +30,13 @@ import ModalDisplay from '../components/ModalDisplay';
 import { fetchAPI } from '../lib/api';
 import { API_URL } from '../data/endpoint';
 import { resource } from '../components/data/endpoint';
+import ModalImage from '../components/Modal/ModalImage';
 
 // using function composition technique to reduce index.js code length
 const getProducts = async (key: Key): Promise<Product[]> => {
   return getProductQueryBody(key, API_URL, resource);
 };
+
 const Home = ({
   productsData,
   categoryData,
@@ -65,10 +67,10 @@ const Home = ({
 
   const { onCloseCart, onAddToCart, onClearCart } = useCart();
 
-  /** Doing Pagination on the client side due to SEO, server side pagination is super easy to implement as well. */
+  /** Implementing Pagination on the client side due to SEO, server side pagination is super easy to implement as well. */
   const [pageNumber, setPageNumber] = useState(0);
   const productsPerPage = 6;
-  //non-null assertion operator on line 75, 79
+  //non-null assertion operator to always get the value of products
   const pagesVisited = pageNumber * productsPerPage;
   const paginatedProductData = Object.values(products!).slice(
     pagesVisited,
@@ -107,24 +109,14 @@ const Home = ({
           recommendations={recommendations}
         />
       </DescriptionLayout>
-      {status === 'loading' && (
-        <p>
-          <Loading />
-        </p>
-      )}
-      {status === 'error' && <p>Something went wrong</p>}
+      {status === 'loading' && <Loading />}
+      {status === 'error' && <p>Something went wrong, refresh the page.</p>}
 
       <div className={styles.photography__section}>
         <SortAndFilter handleSort={handleSort} setOrderValue={setOrderValue} />
         <div className={styles.photography__section__modal}>
           <div onClick={() => setStatus(true)}>
-            {' '}
-            <Image
-              src="/modalIcon.svg"
-              alt="modal-icon"
-              height="30"
-              width="35"
-            />{' '}
+            <ModalImage />
           </div>
 
           <div>
@@ -152,7 +144,6 @@ const Home = ({
               categoryCheckbox(category, ids, selectCategory)
             )}
           <hr />
-
           <h2 className={styles.myCheckBoxTitle}>Price range</h2>
           {pricesData.length > 0 &&
             pricesData.map((prices) =>
