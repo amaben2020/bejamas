@@ -22,7 +22,6 @@ import DescriptionLayout from '../components/Layout/DescriptionLayout';
 import Description from '../components/Description/Description';
 import styles from './../styles/product.module.scss';
 import { Col, Row } from 'react-bootstrap';
-import Image from 'next/image';
 import useSort from '../hooks/useSort';
 import ProductCard from '../components/card/ProductCard';
 import SortAndFilter from '../components/sortAndFilter/SortAndFilter';
@@ -34,7 +33,7 @@ import CustomModal from '../components/Modal/CustomModal';
 import AddToCartButton from '../components/Button/AddToCartButton';
 import style from './../styles/modal.module.scss';
 
-// using function composition technique to reduce index.js code length
+// using function composition technique to reduce code length
 const getProducts = async (key: Key): Promise<Product[]> => {
   return getProductQueryBody(key, API_URL, resource);
 };
@@ -84,6 +83,7 @@ const Home = ({
     return setPageNumber(selected);
   };
 
+  //This function is responsible for dispatching products to the cartState
   const onAdd = (product: IProduct): void => {
     if (!product) {
       throw new Error('Product is undefined');

@@ -2,7 +2,6 @@ export interface IProduct {
   recommendation: string;
   details: string;
   filter(arg0: (product: { featured: boolean }) => boolean): IProduct[];
-
   id: number;
   name: string;
   price: number;
