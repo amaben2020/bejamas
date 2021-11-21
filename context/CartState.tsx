@@ -32,7 +32,7 @@ export const CartProvider = ({ children }: Props) => {
       typeof product === 'undefined'
     ) {
       throw new Error(
-        'Product is now available for dispatch into the CartReducer as payload, please check your configuration'
+        'Product is not available for dispatch into the CartReducer as payload, please check your configuration'
       );
     }
 
@@ -62,7 +62,7 @@ export const CartProvider = ({ children }: Props) => {
       typeof product === 'undefined'
     ) {
       throw new Error(
-        'Product is now available for dispatch into the CartReducer as payload, please check your configuration'
+        'Product is not available for dispatch into the CartReducer as payload, please check your configuration'
       );
     }
     cartActionDispatcher({
