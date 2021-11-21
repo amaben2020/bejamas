@@ -52,7 +52,7 @@ export const CartProvider = ({ children }: Props) => {
       type: CLEAR_CART,
     });
 
-    toast.warn(`Cart would close automatically`);
+    toast.warn(`Cart is cleared, please add items`);
   }, []);
 
   //stopping the values from rerendering its children

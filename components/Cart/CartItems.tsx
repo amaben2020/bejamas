@@ -13,9 +13,8 @@ const CartItems = ({ onClose }: IClose) => {
 
   const clearItems = () => {
     onClearCart();
-    setTimeout(() => {
-      onClose();
-    }, 1300);
+
+    onClose();
   };
 
   return (
