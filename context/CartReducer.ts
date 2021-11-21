@@ -1,5 +1,10 @@
 import { IAction, IState } from '../interface/cart';
-import { ADD_TO_CART, CLEAR_CART, CLOSE_CART_DROPDOWN } from './types';
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  CLOSE_CART_DROPDOWN,
+  REMOVE_ITEM_FROM_CART,
+} from './types';
 
 export const CartReducer = (state: IState, action: IAction): IState => {
   const { type, payload } = action;
@@ -17,6 +22,11 @@ export const CartReducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         showCart: !state.showCart,
+      };
+    case REMOVE_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item.id !== payload!.id),
       };
 
     case CLEAR_CART: {

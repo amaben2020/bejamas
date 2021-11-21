@@ -14,4 +14,5 @@ export type CartContextType = {
   onCloseCart: () => void;
   cartState: object;
   onClearCart: () => void;
+  onRemoveItemFromCart: (product: Product) => void;
 };

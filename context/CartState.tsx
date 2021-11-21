@@ -3,7 +3,12 @@ import { IState, IAction } from '../interface/cart';
 import { Product } from '../interface/products';
 import { CartContext } from './CartContext';
 import { CartReducer } from './CartReducer';
-import { ADD_TO_CART, CLOSE_CART_DROPDOWN, CLEAR_CART } from './types';
+import {
+  ADD_TO_CART,
+  CLOSE_CART_DROPDOWN,
+  CLEAR_CART,
+  REMOVE_ITEM_FROM_CART,
+} from './types';
 import { CartInitialState, Props } from '../types/context';
 import { toast } from 'react-toastify';
 
@@ -20,7 +25,7 @@ export const CartProvider = ({ children }: Props) => {
   //preventing unnecessary recreation of functions using memoization technique. Although this is an overkill in this situation, we can still use it.
 
   const onAddToCart = useCallback((product: Product) => {
-    //error proofing the function
+    //error propagation
     if (
       !product ||
       typeof product !== 'object' ||
@@ -49,6 +54,25 @@ export const CartProvider = ({ children }: Props) => {
     });
   }, []);
 
+  const onRemoveItemFromCart = useCallback((product: Product) => {
+    //error propagation
+    if (
+      !product ||
+      typeof product !== 'object' ||
+      typeof product === 'undefined'
+    ) {
+      throw new Error(
+        'Product is now available for dispatch into the CartReducer as payload, please check your configuration'
+      );
+    }
+    cartActionDispatcher({
+      type: REMOVE_ITEM_FROM_CART,
+      payload: product,
+    });
+
+    toast.warning(`Product removed from cart`);
+  }, []);
+
   const onClearCart = useCallback(() => {
     cartActionDispatcher({
       type: CLEAR_CART,
@@ -59,8 +83,14 @@ export const CartProvider = ({ children }: Props) => {
 
   //stopping the values from rerendering its children
   const value = useMemo(
-    () => ({ onCloseCart, onAddToCart, cartState, onClearCart }),
-    [onCloseCart, onAddToCart, cartState, onClearCart]
+    () => ({
+      onCloseCart,
+      onAddToCart,
+      cartState,
+      onClearCart,
+      onRemoveItemFromCart,
+    }),
+    [onCloseCart, onAddToCart, cartState, onClearCart, onRemoveItemFromCart]
   );
 
   const { Provider } = CartContext;

@@ -7,11 +7,27 @@ const useCart = () => {
   const useCartContextValue = React.useContext<CartContextType | undefined>(
     CartContext
   );
-  //@ts-ignore
-  const { onCloseCart, onAddToCart, cartState, onClearCart } =
-    useCartContextValue;
 
-  return { onCloseCart, onAddToCart, cartState, onClearCart };
+  const {
+    //@ts-ignore
+    onCloseCart,
+    //@ts-ignore
+    onAddToCart,
+    //@ts-ignore
+    cartState,
+    //@ts-ignore
+    onClearCart,
+    //@ts-ignore
+    onRemoveItemFromCart,
+  } = useCartContextValue;
+
+  return {
+    onCloseCart,
+    onAddToCart,
+    cartState,
+    onClearCart,
+    onRemoveItemFromCart,
+  };
 };
 
 export default useCart;
