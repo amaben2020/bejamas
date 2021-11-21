@@ -5,17 +5,7 @@ import Image from 'next/image';
 import styles from './../../styles/navigationBar.module.scss';
 import ClearCartButton from '../Button/AddToCartButton';
 import useCart from '../../hooks/useCart';
-interface ICartItems {
-  image: { formats: { thumbnail: { url: string } } };
-  name: string;
-  _id: string;
-  value: number;
-}
-
-interface IClose {
-  //void doesn't return any value in the execution context.
-  onClose: () => void;
-}
+import { ICartItems, IClose } from '../../interface/cart';
 
 const CartItems = ({ onClose }: IClose) => {
   const { cartState, onClearCart } = useCart();

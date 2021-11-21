@@ -1,5 +1,5 @@
 import { IAction, IState } from '../interface/cart';
-import { ADD_TO_CART, CLEAR_CART, CLOSE_CART_DROPDOWN, LOADING } from './types';
+import { ADD_TO_CART, CLEAR_CART, CLOSE_CART_DROPDOWN } from './types';
 
 export const CartReducer = (state: IState, action: IAction): IState => {
   const { type, payload } = action;
@@ -8,6 +8,7 @@ export const CartReducer = (state: IState, action: IAction): IState => {
     case ADD_TO_CART:
       return {
         ...state,
+        //@ts-ignore
         cartItems: [...state.cartItems, payload],
       };
     case CLOSE_CART_DROPDOWN:

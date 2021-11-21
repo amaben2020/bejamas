@@ -5,7 +5,6 @@ export interface IProduct {
   id: number;
   name: string;
   price: number;
-
   image:
     | { size: string | number }
     | { formats: { thumbnail: { url: string } } }
@@ -37,16 +36,6 @@ export interface Product extends IProduct {
   productsData: IProduct[];
 }
 
-// export interface IProduct {
-//   id: number;
-//   name: string;
-//   price: number;
-//   image: string;
-//   value: number;
-//   description: string;
-//   categoryName: string;
-// }
-
 export interface ICategory {
   map(arg0: (category: ICategory) => JSX.Element): import('react').ReactNode;
   name: string;
@@ -59,11 +48,6 @@ export interface IPrice {
   price: number;
   label: string;
 }
-
-// export interface Product extends IProduct {
-//   productsData: IProduct[];
-//   //products: IProduct[];
-// }
 
 export interface ProductAndCategory extends Product {
   categoryData: ICategory[];

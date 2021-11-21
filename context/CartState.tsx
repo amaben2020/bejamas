@@ -11,13 +11,14 @@ export const initialState: CartInitialState = {
   cartItems: [],
   showCart: false,
 };
-//The children are the data the component receives
+//The children are the data the higher order component receives
 export const CartProvider = ({ children }: Props) => {
   const [cartState, cartActionDispatcher] = useReducer<
     React.Reducer<IState, IAction>
   >(CartReducer, initialState);
 
   //preventing unnecessary recreation of functions using memoization technique. Although this is an overkill in this situation, we can still use it.
+
   const onAddToCart = useCallback((product: Product) => {
     if (
       !product ||
@@ -37,16 +38,8 @@ export const CartProvider = ({ children }: Props) => {
       type: CLOSE_CART_DROPDOWN,
     });
 
-    // onCloseCart();
     toast.success(`${product.name} added to cart`);
   }, []);
-
-  // const onAddToCart = (product: Product): void => {
-  //   cartActionDispatcher({
-  //     type: ADD_TO_CART,
-  //     payload: product,
-  //   });
-  // };
 
   const onCloseCart = useCallback(() => {
     cartActionDispatcher({
@@ -59,12 +52,6 @@ export const CartProvider = ({ children }: Props) => {
       type: CLEAR_CART,
     });
   }, []);
-
-  // const onCloseCart = useCallback(()  => {
-  //   cartActionDispatcher({
-  //     type: CLOSE_CART_DROPDOWN,
-  //   })
-  // })
 
   //stopping the values from rerendering its children
   const value = useMemo(

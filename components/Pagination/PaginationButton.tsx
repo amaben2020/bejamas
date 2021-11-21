@@ -4,7 +4,7 @@ import styles from './../../styles/pagination.module.scss';
 
 interface IProps {
   pageCount: number;
-  onPageChange: (a: any) => void;
+  onPageChange: (selectedItem: { selected: number }) => void;
   pageRangeDisplayed: number;
   currentCount: number;
 }
