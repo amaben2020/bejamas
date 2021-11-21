@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './../../styles/modal.module.scss';
-// @ts-ignore
 import FontAwesome from 'react-fontawesome';
 const CustomModal = (props: {
   children?: React.ReactNode;

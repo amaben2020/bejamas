@@ -13,35 +13,18 @@ export const getProductQueryBody = async (
   const priceId = key.queryKey[2].price;
   const priceQueryString = priceId.join('&');
 
-  // const priceLessThan20 = key.queryKey[2].price.map(
-  //   (id: number) => `price.price_lte=${id}`
-  // );
-
   const priceLessThan20 = key.queryKey[2].price.map(
     (id: number) => `price.price_eq=${id}`
   );
-
-  // const price20To100 = key.queryKey[2].price.map(
-  //   (id: number) => `price.price_gte=20&price.price_eq=${id}`
-  // );
 
   const price20To100 = key.queryKey[2].price.map(
     (id: number) => `price.price_eq=${id}`
   );
   const inputtedPriceValue = Number(priceId);
 
-  //working gte 100 - 200
-  // const price100To200 = key.queryKey[2].price.map(
-  //   (id: number) => `price.price_gte=100&price.price_lt=${id}`
-  // );
-
   const priceEqual200 = key.queryKey[2].price.map(
     (id: number) => `price.price_eq=${id}`
   );
-
-  // const priceGte200 = key.queryKey[2].price.map(
-  //   (id: number) => `price.price_gte=200&price.price_lte=${id}`
-  // );
 
   const priceEQ1000 = key.queryKey[2].price.map(
     (id: number) => `price.price_eq=${id}`
@@ -62,17 +45,10 @@ export const getProductQueryBody = async (
     );
     return res.json();
   } else if (inputtedPriceValue === 200) {
-    // const resp = await fetch(
-    //   `${API_URL}/${resource}?${sortQueryString}&${categoryQueryString}&${price100To200}`
-    // );
-    // return resp.json();
-
     const resp = await fetch(
       `${API_URL}/${resource}?${sortQueryString}&${categoryQueryString}&${priceEqual200}`
     );
     return resp.json();
-
-    // http://localhost:1337/products?_sort=name:asc&&price.price_gte=200
   } else if (inputtedPriceValue === 1000) {
     const resp = await fetch(
       `${API_URL}/${resource}?${sortQueryString}&${categoryQueryString}&${priceEQ1000}`

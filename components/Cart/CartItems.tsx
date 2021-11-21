@@ -6,7 +6,6 @@ import styles from './../../styles/navigationBar.module.scss';
 import ClearCartButton from '../Button/AddToCartButton';
 import useCart from '../../hooks/useCart';
 interface ICartItems {
-  // price?: number;
   image: { formats: { thumbnail: { url: string } } };
   name: string;
   _id: string;
@@ -19,10 +18,7 @@ interface IClose {
 }
 
 const CartItems = ({ onClose }: IClose) => {
-  // const { cartItems, removeFromCart } = useContext(CartContext);
-  console.log('ONCLOSE FN', onClose);
-
-  const { cartState, onClearCart, onCloseCart } = useCart();
+  const { cartState, onClearCart } = useCart();
   const { cartItems, showCart } = cartState;
   const cartItem = [...cartItems];
 
@@ -53,7 +49,7 @@ const CartItems = ({ onClose }: IClose) => {
               </div>
               <div className={styles.cartItems__flexarea__img}>
                 <Image
-                  src={c && c.image.formats.thumbnail?.url}
+                  src={c && c.image.formats.thumbnail.url}
                   alt={c.name}
                   width={140}
                   height={80}

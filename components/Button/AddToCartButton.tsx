@@ -1,13 +1,8 @@
 import React from 'react';
+import { IButtonProps } from '../../interface/button';
 import styles from './../../styles/addToCart.module.scss';
-interface IProps {
-  title: string;
-  onClick: () => void;
-  inverted?: string;
-  fullWidth?: string;
-}
 
-const Button = ({ title, onClick, inverted, fullWidth }: IProps) => {
+const Button = ({ title, onClick, inverted, fullWidth }: IButtonProps) => {
   return (
     <div>
       <button

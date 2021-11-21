@@ -17,11 +17,10 @@ const Description = ({
   recommendations,
 }: IDescription) => {
   const recSize = Object.values(recommendations)
-    //@ts-ignore
     .map((r: IProduct) => r.image.size)
     .filter((size) => size > 50);
   const recSize2 = Object.values(recommendations)
-    //@ts-ignore
+
     .map((r: IProduct) => r.image.size)
     .filter((size) => size < 25);
 
@@ -56,7 +55,6 @@ const Description = ({
           <div className={styles.description__layout__details__imageWrapper}>
             {recommendations?.map((recommendation: IProduct) => (
               <div
-                //@ts-ignore
                 key={recommendation.image.url}
                 className={
                   styles.description__layout__details__imageWrapper__img
@@ -65,9 +63,7 @@ const Description = ({
                 <Image
                   width="160"
                   height="250"
-                  //@ts-ignore
                   src={recommendation.image.url}
-                  //@ts-ignore
                   alt={recommendation.image.name}
                 />
               </div>
