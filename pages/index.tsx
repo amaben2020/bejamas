@@ -26,7 +26,6 @@ import Image from 'next/image';
 import useSort from '../hooks/useSort';
 import ProductCard from '../components/card/ProductCard';
 import SortAndFilter from '../components/sortAndFilter/SortAndFilter';
-import ModalDisplay from '../components/Modal/ModalDisplay';
 import { fetchAPI } from '../lib/api';
 import { API_URL } from '../data/endpoint';
 import { resource } from '../components/data/endpoint';
@@ -124,17 +123,6 @@ const Home = ({
 
           <div>
             {isModalOpen && (
-              // <ModalDisplay
-              //   categoryData={categoryData}
-              //   pricesData={pricesData}
-              //   onAddToCart={onAdd}
-              //   onClearCart={onClearCart}
-              //   onCloseCart={onCloseCart}
-              //   setStatus={setStatus}
-              //   // priceIds={priceIds}
-              //   //ids={ids}
-              // />
-
               //This has to be done on page level
               <CustomModal closeModal={() => setStatus(false)}>
                 <p className={style.modalText}>Filter</p>

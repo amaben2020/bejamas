@@ -20,6 +20,7 @@ export const CartProvider = ({ children }: Props) => {
   //preventing unnecessary recreation of functions using memoization technique. Although this is an overkill in this situation, we can still use it.
 
   const onAddToCart = useCallback((product: Product) => {
+    //error proofing the function
     if (
       !product ||
       typeof product !== 'object' ||
@@ -29,6 +30,7 @@ export const CartProvider = ({ children }: Props) => {
         'Product is now available for dispatch into the CartReducer as payload, please check your configuration'
       );
     }
+
     cartActionDispatcher({
       type: ADD_TO_CART,
       payload: product,

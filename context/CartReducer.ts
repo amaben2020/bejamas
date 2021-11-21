@@ -9,7 +9,9 @@ export const CartReducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         //@ts-ignore
+        //both logic are valid
         cartItems: [...state.cartItems, payload],
+        // cartItems: state.cartItems.concat(payload),
       };
     case CLOSE_CART_DROPDOWN:
       return {
@@ -21,6 +23,11 @@ export const CartReducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         cartItems: [],
+        //both logic are valid (declarative vs imperative)
+        // cartItems: state.cartItems.splice(
+        //   0,
+        //   state.cartItems.length - state.cartItems.length
+        // ),
       };
     }
 
