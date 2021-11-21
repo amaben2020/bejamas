@@ -51,6 +51,8 @@ export const CartProvider = ({ children }: Props) => {
     cartActionDispatcher({
       type: CLEAR_CART,
     });
+
+    toast.warn(`Cart successfully cleared`);
   }, []);
 
   //stopping the values from rerendering its children

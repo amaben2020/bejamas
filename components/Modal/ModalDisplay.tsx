@@ -8,40 +8,27 @@ import { categoryCheckbox } from '../../utils/categoryCheckbox';
 import useSelectCategory from '../../hooks/useSelectCategory';
 import useSelectPrices from '../../hooks/useSelectPrice';
 interface ModalDisplayProps {
-  ids: number[];
+  //ids: number[];
   onAddToCart: (products: IProduct) => void;
   onClearCart: () => void;
   onCloseCart: () => void;
   setStatus: (status: boolean) => void;
   categoryData: ICategory[];
   pricesData: IPrice[];
-  priceIds: number[];
-}
-
-interface IpriceCheckbox {
-  priceCheckbox: (
-    prices: IPrice[],
-    pricesIds: number[],
-
-    selectPrices: (priceIds: SetStateAction<string[]>) => void
-  ) => Element;
+  // priceIds: number[];
 }
 
 const ModalDisplay = ({
   setStatus,
   categoryData,
-
   pricesData,
-
   onClearCart,
   onAddToCart,
   onCloseCart,
-  priceIds,
-
-  ids,
 }: ModalDisplayProps) => {
-  const { selectCategory } = useSelectCategory();
-  const { selectPrices } = useSelectPrices();
+  const { selectCategory, ids } = useSelectCategory();
+  const { selectPrices, priceIds } = useSelectPrices();
+
   return (
     <div>
       <CustomModal closeModal={() => setStatus(false)}>
@@ -61,9 +48,9 @@ const ModalDisplay = ({
           <AddToCartButton
             inverted="inverted"
             title="Clear"
-            onClick={() => console.log('yeah')}
+            onClick={() => onClearCart()}
           />
-          <AddToCartButton title="Save" onClick={() => console.log('yeah')} />
+          <AddToCartButton title="Save" onClick={() => onCloseCart()} />
         </div>
       </CustomModal>
     </div>

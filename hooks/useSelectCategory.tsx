@@ -17,7 +17,7 @@ const useSelectCategory = () => {
       setIds(newIds);
     }
   };
-  return { selectCategory, ids };
+  return { selectCategory, ids, setIds };
 };
 
 export default useSelectCategory;

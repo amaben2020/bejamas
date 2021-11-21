@@ -31,6 +31,9 @@ import { fetchAPI } from '../lib/api';
 import { API_URL } from '../data/endpoint';
 import { resource } from '../components/data/endpoint';
 import ModalImage from '../components/Modal/ModalImage';
+import CustomModal from '../components/Modal/CustomModal';
+import AddToCartButton from '../components/Button/AddToCartButton';
+import style from './../styles/modal.module.scss';
 
 // using function composition technique to reduce index.js code length
 const getProducts = async (key: Key): Promise<Product[]> => {
@@ -121,16 +124,42 @@ const Home = ({
 
           <div>
             {isModalOpen && (
-              <ModalDisplay
-                categoryData={categoryData}
-                pricesData={pricesData}
-                onAddToCart={onAdd}
-                onClearCart={onClearCart}
-                onCloseCart={onCloseCart}
-                setStatus={setStatus}
-                priceIds={priceIds}
-                ids={ids}
-              />
+              // <ModalDisplay
+              //   categoryData={categoryData}
+              //   pricesData={pricesData}
+              //   onAddToCart={onAdd}
+              //   onClearCart={onClearCart}
+              //   onCloseCart={onCloseCart}
+              //   setStatus={setStatus}
+              //   // priceIds={priceIds}
+              //   //ids={ids}
+              // />
+
+              <CustomModal closeModal={() => setStatus(false)}>
+                <p className={style.modalText}>Filter</p>
+                {categoryData.length > 0 &&
+                  categoryData.map((category) =>
+                    categoryCheckbox(category, ids, selectCategory)
+                  )}
+                <hr />
+                <p className={style.modalText}>Price range</p>
+                {pricesData.length > 0 &&
+                  pricesData.map((prices) =>
+                    priceCheckbox(prices, priceIds, selectPrices)
+                  )}
+                <div className={style.modalButtonArea}>
+                  {' '}
+                  <AddToCartButton
+                    inverted="inverted"
+                    title="Clear"
+                    onClick={() => onClearCart()}
+                  />
+                  <AddToCartButton
+                    title="Save"
+                    onClick={() => setStatus(false)}
+                  />
+                </div>
+              </CustomModal>
             )}
           </div>
         </div>
