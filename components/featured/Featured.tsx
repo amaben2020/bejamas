@@ -25,7 +25,6 @@ const Featured = ({ product }: IMyChildren) => {
               />
             </div>
           </div>
-
           <div className={style.featured__wrapper}>
             <Image
               height="580"
@@ -36,13 +35,25 @@ const Featured = ({ product }: IMyChildren) => {
               className={style.featured__featuredImage}
               alt="featured image"
             />
-
             <div className={style.featured__photoOfTheDay}>
               Photo of the day
-            </div>
-          </div>
+            </div>{' '}
+          </div>{' '}
         </div>
       ))}
+      <div className={style.featured__show}>
+        {featuredProduct?.map((product: IProduct) => (
+          <div key={product.id}>
+            <div className={style.featured__show}>
+              <AddToCartButton
+                onClick={() => onAddToCart(product)}
+                title={'Add To Cart'}
+                fullWidth="fullWidth"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
