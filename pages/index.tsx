@@ -46,6 +46,7 @@ const Home = ({
   const { selectCategory, ids } = useSelectCategory();
   const { selectPrices, priceIds } = useSelectPrices();
   const { sortValue, handleSort, setOrderValue, orderValue } = useSort();
+  const [isModalOpen, setStatus] = useState(false);
 
   const { data: products, status } = useQuery(
     [
@@ -71,8 +72,8 @@ const Home = ({
   /** Implementing Pagination on the client side due to SEO, server side pagination is super easy to implement as well. */
   const [pageNumber, setPageNumber] = useState(0);
   const productsPerPage = 6;
-  //non-null assertion operator to always get the value of products
   const pagesVisited = pageNumber * productsPerPage;
+  //non-null assertion operator to always get the value of products
   const paginatedProductData = Object.values(products!).slice(
     pagesVisited,
     pagesVisited + productsPerPage
@@ -91,7 +92,6 @@ const Home = ({
     return onAddToCart(product);
   };
 
-  const [isModalOpen, setStatus] = useState(false);
   const productDetails = Object.values(products!).filter(
     (prod: IProduct) => prod.featured
   );
@@ -123,7 +123,7 @@ const Home = ({
 
           <div>
             {isModalOpen && (
-              //This has to be done on page level
+              //This has to be done on page level, code has been largely splitted for better component structure
               <CustomModal closeModal={() => setStatus(false)}>
                 <p className={style.modalText}>Filter</p>
                 {categoryData.length > 0 &&
@@ -174,7 +174,7 @@ const Home = ({
             paginatedProductData.length > 0 &&
             paginatedProductData?.map((product: IProduct) => (
               <div key={product.id}>
-                <ProductCard product={product} onAdd={onAdd} />
+                <ProductCard product={product!} onAdd={onAdd} />
               </div>
             ))}
 

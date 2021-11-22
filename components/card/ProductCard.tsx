@@ -18,7 +18,6 @@ const ProductCard = ({ product, onAdd }: ProductCardElement) => {
           width="500"
           height="680"
           className={styles.card__img}
-          //@ts-ignore
           src={image && image?.url}
           alt={name}
         />

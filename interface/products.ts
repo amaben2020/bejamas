@@ -1,3 +1,15 @@
+type ObjectImageProps = {
+  src: string;
+  url: string;
+  width?: number | string;
+  height?: number | string;
+  layout?: string;
+  placeholder?: string;
+  name?: string;
+  size: number;
+  size2: number;
+};
+
 export interface IProduct {
   recommendation: string;
   details: string;
@@ -5,10 +17,7 @@ export interface IProduct {
   id: number;
   name: string;
   price: number;
-  image:
-    | { size: string | number }
-    | { formats: { thumbnail: { url: string } } }
-    | { url: string };
+  image: ObjectImageProps;
   description: string;
   featured: boolean;
   value: number;

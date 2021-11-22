@@ -5,17 +5,27 @@ import ProductCard from '../components/card/ProductCard';
 describe('Item', () => {
   const product = {
     id: 1,
-    filter: function (a: any) {
-      return a;
-    },
+
     name: 'Samurai King Resting',
     featured: true,
     bestseller: false,
     price: 5.99,
     categoryName: 'jejeje',
-    image: { formats: { thumbnail: { url: 'string' } } },
+    image: {
+      src: 'string',
+      width: 1 || 'string',
+      height: 2 || 'string',
+      layout: 'string',
+      placeholder: 'string',
+      url: 'https://djdjdjd.djdj',
+      size: 3,
+      size2: 33,
+    },
     value: 23,
     description: 'jdjdjdj',
+    filter: function (a: any) {
+      return a;
+    },
     category: {
       id: 1,
       name: 'Pets',
@@ -38,6 +48,7 @@ describe('Item', () => {
       component.root.findAllByProps({ children: 'Samurai King Resting' }).length
     ).toEqual(1);
   });
+
   it('calls onAdd on button click', () => {
     const onAdd = jest.fn();
 

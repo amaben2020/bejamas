@@ -9,6 +9,9 @@
     "lint": "next lint",
     "test": "jest"
   },
+  "transform": {
+    "\\.js$": "<rootDir>/node_modules/babel-jest"
+  },
   "dependencies": {
     "@babel/preset-typescript": "^7.16.0",
     "@types/react-fontawesome": "^1.6.5",
@@ -16,6 +19,7 @@
     "antd": "^4.16.13",
     "axios": "^0.24.0",
     "next": "12.0.3",
+    "next-images": "^1.8.2",
     "react": "17.0.2",
     "react-bootstrap": "^2.0.2",
     "react-dom": "17.0.2",
@@ -35,11 +39,13 @@
     "@types/jest": "^27.0.2",
     "@types/node": "16.11.7",
     "@types/react": "17.0.34",
+    "@types/react-dom": "^17.0.11",
     "@types/react-paginate": "^7.1.1",
     "@types/react-test-renderer": "^17.0.1",
     "babel-jest": "^27.3.1",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.3",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
     "jest-css-modules": "^2.1.0",
     "react-test-renderer": "^17.0.2",
