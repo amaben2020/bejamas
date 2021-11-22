@@ -1,10 +1,12 @@
 import { QueryParams } from '../types/queryParams';
 
+//This function simply accepts Api url, resource name and query key (input) and loops through the query string using the inputted values
 export const getProductQueryBody = async (
   key: QueryParams,
   API_URL: string,
   resource: string
 ) => {
+  //evaluates to 'http://localhost:3000/products?category.id=name'
   const categoryID = key.queryKey[1].category.map(
     (id: number) => `category.id=${id}`
   );

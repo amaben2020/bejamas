@@ -2,7 +2,7 @@ import React from 'react';
 import { CartContext } from '../context/CartContext';
 import { CartContextType } from '../types/context';
 
-//This custom hook simply returns the values derived from the CartContext
+//This custom hook simply returns the values derived from the CartContext rather than always having to import the context in components.
 const useCart = () => {
   const useCartContextValue = React.useContext<CartContextType | undefined>(
     CartContext

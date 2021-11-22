@@ -32,8 +32,9 @@ export const CartReducer = (state: IState, action: IAction): IState => {
     case CLEAR_CART: {
       return {
         ...state,
-        cartItems: [],
         //both logic are valid (declarative vs imperative)
+        cartItems: [],
+
         // cartItems: state.cartItems.splice(
         //   0,
         //   state.cartItems.length - state.cartItems.length

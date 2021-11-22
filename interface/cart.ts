@@ -1,4 +1,4 @@
-import { Product, IProduct } from './products';
+import { Product } from './products';
 
 export interface IAction {
   type: string;
